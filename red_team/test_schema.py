@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from schemas.transaction import Transaction
-from schemas.attack_dna import AttackDNA
+from red_team.schemas.transaction import Transaction
+from red_team.schemas.attack_dna import AttackDNA
 
 
 transaction = Transaction(
