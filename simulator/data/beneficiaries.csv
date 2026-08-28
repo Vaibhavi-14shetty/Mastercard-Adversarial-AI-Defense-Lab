@@ -1,0 +1,201 @@
+beneficiary_id,beneficiary_name,bank_name,location
+B0001,Ridhi Murthy,Doshi-Sachar Bank,Chennai
+B0002,Nirja Thaker,"Sinha, Bhatia and Devi Bank",Mumbai
+B0003,Ekta Sridhar,"Puri, Murthy and Ghose Bank",Kolkata
+B0004,Hema Pandya,"Lalla, Sule and Handa Bank",Delhi
+B0005,Arya Misra,Mishra LLC Bank,Ahmedabad
+B0006,Vrinda Nadig,Palla-Mahal Bank,Chennai
+B0007,Jairaj Raghavan,Pai-Dhingra Bank,Kolkata
+B0008,Brijesh Mani,"Brar, Pal and Sathe Bank",Bangalore
+B0009,Varenya Kala,Yohannan LLC Bank,Pune
+B0010,Laksh Chopra,"Khatri, Kibe and Bedi Bank",Pune
+B0011,Viraj Ben,Sachdev LLC Bank,Bangalore
+B0012,Harish Devan,Dugar Group Bank,Ahmedabad
+B0013,Vansha Iyengar,Nagi-Mangal Bank,Ahmedabad
+B0014,Gaurav Kata,"Barad, Gill and Sahni Bank",Bangalore
+B0015,Balhaar Ranganathan,Grewal-Mann Bank,Mumbai
+B0016,Aditya Misra,"Chhabra, Nayak and Mane Bank",Ahmedabad
+B0017,Wakeeta Desai,"Sidhu, Mahajan and Hans Bank",Chennai
+B0018,Ganga Gaba,"Shanker, Kurian and Grewal Bank",Delhi
+B0019,Geetika Merchant,"Hans, Gill and Ravi Bank",Chennai
+B0020,Yutika Narang,Rattan Ltd Bank,Hyderabad
+B0021,Qasim Dey,Naik-Kothari Bank,Pune
+B0022,Advika Rajagopal,Sekhon LLC Bank,Delhi
+B0023,Chasmum Apte,Parsa-Keer Bank,Kolkata
+B0024,Jagat Shroff,Dutta-Ravi Bank,Kolkata
+B0025,Jacob Merchant,Kant-Kanda Bank,Delhi
+B0026,Vanya Dua,Prakash-Sagar Bank,Mumbai
+B0027,Tejas Kota,"Bumb, Vora and Sekhon Bank",Ahmedabad
+B0028,Faras Choudhury,Tiwari and Sons Bank,Ahmedabad
+B0029,Nitesh Narang,"Sathe, Dada and Jha Bank",Ahmedabad
+B0030,Gavin Uppal,Bhakta-Setty Bank,Mumbai
+B0031,Yochana Sagar,Bhardwaj-Shere Bank,Ahmedabad
+B0032,Anthony Randhawa,Aggarwal-Kamdar Bank,Ahmedabad
+B0033,Chakradev Sampath,Bhatt-Bhasin Bank,Chennai
+B0034,Urmi Balay,Rege-Gole Bank,Mumbai
+B0035,Osha Prasad,Sen-Purohit Bank,Ahmedabad
+B0036,Faris Zacharia,Pall Inc Bank,Pune
+B0037,Maya Wadhwa,Kapoor Inc Bank,Mumbai
+B0038,Chanchal Sheth,"Samra, Wali and Raghavan Bank",Kolkata
+B0039,Yug Sharma,Dubey-Majumdar Bank,Kolkata
+B0040,Isaiah Balay,"Saini, Babu and Khosla Bank",Pune
+B0041,Ekalinga Chaudhuri,"Bandi, Sekhon and Bava Bank",Pune
+B0042,Chaitanya Ratti,Kaur-Zacharia Bank,Mumbai
+B0043,Daksh Dey,"Mann, Kaur and Nagar Bank",Hyderabad
+B0044,Warjas Mittal,Verma and Sons Bank,Delhi
+B0045,Charita Maharaj,Gill Ltd Bank,Ahmedabad
+B0046,Warhi Batta,Raj-Vohra Bank,Chennai
+B0047,Omaja Rege,Mital Group Bank,Chennai
+B0048,Urvashi Khosla,Mital Ltd Bank,Pune
+B0049,Ubika Bhardwaj,"Sachar, Saha and Wagle Bank",Delhi
+B0050,Lipika Kibe,Jani-Narayanan Bank,Ahmedabad
+B0051,Shivani Prabhakar,Wason Ltd Bank,Chennai
+B0052,Charan Loyal,Baral-Bora Bank,Ahmedabad
+B0053,Teerth Srinivas,Natarajan LLC Bank,Chennai
+B0054,Siddharth Gupta,"Dalal, Srinivas and Kibe Bank",Ahmedabad
+B0055,Mekhala Khatri,"Nagy, Mandal and Rai Bank",Mumbai
+B0056,Jagrati Morar,Parsa-Varghese Bank,Mumbai
+B0057,Unnati Chaudhari,"Singh, Nagarajan and Jani Bank",Delhi
+B0058,Dhriti Sachdev,Kant Ltd Bank,Pune
+B0059,Amol Lal,"Sahni, Merchant and Dua Bank",Chennai
+B0060,Forum Karpe,Korpal-Tata Bank,Chennai
+B0061,Aarini Suresh,"Swaminathan, Sharma and Ganguly Bank",Hyderabad
+B0062,Omkaar Dey,"Suresh, Gour and Bhargava Bank",Chennai
+B0063,Falan Bava,Sachar and Sons Bank,Mumbai
+B0064,Ekansh Dora,Kamdar PLC Bank,Pune
+B0065,Kashvi Bhasin,"Subramanian, Sura and Babu Bank",Bangalore
+B0066,Nisha Arora,Wagle Ltd Bank,Ahmedabad
+B0067,Bhavini Badal,"Sani, Gola and Chhabra Bank",Bangalore
+B0068,Manthan Khosla,Vyas LLC Bank,Kolkata
+B0069,Amara Ranganathan,Prakash Group Bank,Mumbai
+B0070,Yagnesh Kara,Buch-Balay Bank,Hyderabad
+B0071,Nidra Raghavan,Soni-Bhalla Bank,Delhi
+B0072,Onveer Butala,Saraf-Narula Bank,Delhi
+B0073,Brijesh Karpe,Soman LLC Bank,Mumbai
+B0074,Falan Mand,"Bali, Gola and Murty Bank",Kolkata
+B0075,Sarthak Dhawan,"Rao, Bose and Mistry Bank",Delhi
+B0076,Wridesh Ramachandran,"Zachariah, Narula and Rajagopalan Bank",Ahmedabad
+B0077,Farhan Tella,"Pal, Bera and Chaudhari Bank",Delhi
+B0078,Vincent Borra,Ranganathan-Narain Bank,Chennai
+B0079,Anjali Seshadri,Kari-Parekh Bank,Mumbai
+B0080,Rachana Grewal,"Rai, Chada and Merchant Bank",Kolkata
+B0081,Ethan Butala,Dube-Rai Bank,Pune
+B0082,Lopa Nadig,Chhabra-Chand Bank,Mumbai
+B0083,Darika Saxena,Madan-Chaudry Bank,Ahmedabad
+B0084,Gagan Grover,Sen-Vala Bank,Ahmedabad
+B0085,Harshil Bal,Pandya PLC Bank,Bangalore
+B0086,Ekta Rajan,Manne Group Bank,Ahmedabad
+B0087,Frado Kibe,"Verma, Gara and Rai Bank",Pune
+B0088,Liam Luthra,Loyal-Tailor Bank,Pune
+B0089,Dev Ganesh,Majumdar-Sama Bank,Kolkata
+B0090,Veda Bose,Krishnamurthy-Koshy Bank,Ahmedabad
+B0091,Rohan Shankar,Deshmukh LLC Bank,Bangalore
+B0092,Meghana Natarajan,"Rai, Narayan and Sarraf Bank",Bangalore
+B0093,Qushi Deshpande,Nagi-Iyer Bank,Bangalore
+B0094,Dipta Goel,Nagar-Manne Bank,Mumbai
+B0095,Xavier Nanda,Mand-Ramaswamy Bank,Kolkata
+B0096,Ishaan Iyengar,"Gole, Bala and Shenoy Bank",Chennai
+B0097,Raksha Manne,"Biswas, Rege and Tata Bank",Kolkata
+B0098,Chavvi Khurana,Dube-Sampath Bank,Kolkata
+B0099,Ethan Sen,"Srinivas, Rattan and Warrior Bank",Delhi
+B0100,Balhaar Parsa,"Yadav, Chada and Chopra Bank",Hyderabad
+B0101,Isha Ganesan,"Basu, Ratta and Narula Bank",Kolkata
+B0102,Hitesh Anne,Kuruvilla and Sons Bank,Chennai
+B0103,Sanaya Prasad,Sheth-Tella Bank,Hyderabad
+B0104,Hemani Bakshi,Cheema-Merchant Bank,Ahmedabad
+B0105,Frederick D’Alia,"Dhar, Pall and Muni Bank",Bangalore
+B0106,Tamanna Jhaveri,"Subramanian, Pall and Soni Bank",Bangalore
+B0107,Raksha Sethi,Bhavsar-Mital Bank,Kolkata
+B0108,Ishwar Bajaj,Chopra-Gala Bank,Hyderabad
+B0109,Zaitra Ghosh,"Dutta, Narayanan and Sandhu Bank",Chennai
+B0110,Vincent Ravel,"Gour, Grewal and Sankaran Bank",Delhi
+B0111,Ayush Hora,Sanghvi-Ramachandran Bank,Delhi
+B0112,Tanish Jha,Bhatnagar-Chaudry Bank,Delhi
+B0113,Jasmit Nanda,Shankar Inc Bank,Hyderabad
+B0114,Vrishti Wable,"Munshi, Rama and Ramanathan Bank",Chennai
+B0115,Ijaya Pandey,Gera-Mishra Bank,Bangalore
+B0116,Krish Munshi,Khare LLC Bank,Bangalore
+B0117,Qadim Prakash,"Dhaliwal, Vaidya and Rama Bank",Chennai
+B0118,Lakshit Rajagopal,Grewal-Sur Bank,Mumbai
+B0119,Ojas Suri,Dey-Grover Bank,Chennai
+B0120,Shravya Bera,Andra-Sundaram Bank,Ahmedabad
+B0121,Robert Rajagopalan,"Tiwari, Talwar and Rege Bank",Kolkata
+B0122,Ojasvi Sawhney,Ganesh-Butala Bank,Hyderabad
+B0123,Thomas Master,Maharaj and Sons Bank,Kolkata
+B0124,Om Shankar,"Tandon, Vaidya and Chowdhury Bank",Pune
+B0125,Amrita Peri,"Barman, Sastry and Kamdar Bank",Mumbai
+B0126,Harsh Kota,Bali-Sengupta Bank,Pune
+B0127,Ijaya Chahal,Dalal-Khalsa Bank,Kolkata
+B0128,Indali Sangha,Dewan and Sons Bank,Bangalore
+B0129,Daniel Panchal,"Mand, Yohannan and Ganguly Bank",Pune
+B0130,Brinda Mann,"Loke, Varkey and Chandran Bank",Pune
+B0131,Nisha Bhargava,Date-Deo Bank,Delhi
+B0132,Madhav Nagy,Ramaswamy Group Bank,Hyderabad
+B0133,Amruta Sachdeva,Seth-Borra Bank,Bangalore
+B0134,Neha Varma,"Mall, Pillay and Sha Bank",Hyderabad
+B0135,Falak Agate,"Chander, Shanker and Parmar Bank",Hyderabad
+B0136,Mitali Kamdar,Kakar-Talwar Bank,Bangalore
+B0137,Ekantika Mander,De-Sundaram Bank,Pune
+B0138,Chanakya Batra,Sharaf Inc Bank,Hyderabad
+B0139,Nakul Sastry,Acharya-Sangha Bank,Delhi
+B0140,Kevin Mittal,Mahal Inc Bank,Pune
+B0141,Zashil Butala,Gandhi-Ben Bank,Chennai
+B0142,Dalaja Kaur,Chand-Chandran Bank,Ahmedabad
+B0143,Tanay Sood,Deo PLC Bank,Mumbai
+B0144,Zilmil Saxena,Anand Ltd Bank,Delhi
+B0145,Jai Sami,"Deo, Sridhar and Bobal Bank",Kolkata
+B0146,Leela Chakraborty,"Chaudry, Chauhan and Munshi Bank",Delhi
+B0147,Chandani Devan,Deol-Dhar Bank,Hyderabad
+B0148,Abhiram Gala,Panchal-Kala Bank,Pune
+B0149,Nisha Savant,Chadha Inc Bank,Kolkata
+B0150,Jatin Rajagopalan,Sanghvi-Murty Bank,Kolkata
+B0151,Yug Malhotra,"Chad, Kothari and Mane Bank",Kolkata
+B0152,Charvi Jha,"Upadhyay, Gulati and Ramanathan Bank",Chennai
+B0153,Chatura Khatri,Raju-Chowdhury Bank,Pune
+B0154,Xalak Bobal,"Arora, Patel and Nadig Bank",Pune
+B0155,Lila Salvi,Gera-Sinha Bank,Hyderabad
+B0156,Anay Bir,Lala and Sons Bank,Delhi
+B0157,Darpan Rao,"Mangat, Thaker and Sagar Bank",Ahmedabad
+B0158,Neelima Butala,"Yadav, Yogi and Dua Bank",Delhi
+B0159,Fiyaz Mukherjee,Vaidya and Sons Bank,Chennai
+B0160,Eta Raman,"Bhatti, Mukherjee and Sarkar Bank",Delhi
+B0161,Dalbir Konda,Saraf Inc Bank,Delhi
+B0162,Christopher More,"Gill, Dar and Arora Bank",Hyderabad
+B0163,Advay Gade,Palan-Virk Bank,Ahmedabad
+B0164,Ojas Prabhu,Luthra Ltd Bank,Bangalore
+B0165,Ayushman Nayak,Magar-Viswanathan Bank,Mumbai
+B0166,Adya Bose,Shah-Vaidya Bank,Bangalore
+B0167,Christopher Tata,"Ganesan, Pillai and Dugar Bank",Bangalore
+B0168,Harshil D’Alia,Upadhyay Inc Bank,Mumbai
+B0169,Advik Konda,Sodhi LLC Bank,Kolkata
+B0170,Mason Gola,Saini and Sons Bank,Pune
+B0171,Yuvraj Saha,"Nagarajan, Madan and Brahmbhatt Bank",Kolkata
+B0172,Jagdish Thakkar,"Ben, Gola and Kapoor Bank",Hyderabad
+B0173,Nandini Biswas,Mandal-Mukhopadhyay Bank,Hyderabad
+B0174,Gabriel Shan,Pillay and Sons Bank,Bangalore
+B0175,Daksha Kibe,Pillay-Tak Bank,Bangalore
+B0176,Yatan Dora,Rout Inc Bank,Hyderabad
+B0177,Hiral Andra,Agarwal-Puri Bank,Pune
+B0178,Hemang Jha,"Khanna, Saini and Swamy Bank",Chennai
+B0179,Lucky Mammen,Bassi and Sons Bank,Ahmedabad
+B0180,Kashish Shanker,"Chad, Chandran and Tiwari Bank",Bangalore
+B0181,Meera Borde,"Bhatia, Saran and De Bank",Pune
+B0182,Bishakha Lal,Ramaswamy-Narain Bank,Bangalore
+B0183,Sneha Magar,Borde and Sons Bank,Chennai
+B0184,Ikbal Dugal,Gala Group Bank,Pune
+B0185,Dipta Ray,Wason LLC Bank,Hyderabad
+B0186,Siya Morar,Lanka-Dar Bank,Ahmedabad
+B0187,Nakul Modi,"Baria, Kale and Narang Bank",Chennai
+B0188,Gavin Kothari,Randhawa-Varghese Bank,Mumbai
+B0189,Chandani Lad,Balasubramanian Group Bank,Chennai
+B0190,Zaid Chandra,Chaudry-Dey Bank,Delhi
+B0191,Advik Bhatia,De and Sons Bank,Bangalore
+B0192,Kashish Chad,"Lad, Borde and Bains Bank",Mumbai
+B0193,Rudra Sawhney,Chanda LLC Bank,Bangalore
+B0194,Brijesh Shenoy,Ganguly PLC Bank,Kolkata
+B0195,Megha Taneja,Raja Ltd Bank,Kolkata
+B0196,Orinder Pandya,Grover LLC Bank,Mumbai
+B0197,Sanaya Dixit,Korpal Ltd Bank,Chennai
+B0198,Wishi Sabharwal,"Srinivas, Bhat and Chahal Bank",Delhi
+B0199,Leela Devan,Iyengar-Vora Bank,Delhi
+B0200,Anirudh Raja,"Parmer, Srinivasan and Sundaram Bank",Chennai
