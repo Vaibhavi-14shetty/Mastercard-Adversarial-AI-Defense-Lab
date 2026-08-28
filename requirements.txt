@@ -1,7 +1,0 @@
-fastapi>=0.115.0
-uvicorn[standard]>=0.30.6
-pydantic>=2.9.2
-pandas>=3.0.0
-numpy>=2.3.3
-Faker>=28.4.1
-python-dateutil>=2.9.0
