@@ -1,0 +1,52 @@
+[
+  {
+    "customer_id": "C101",
+    "average_amount": 2500,
+    "max_normal_amount": 6000,
+    "usual_locations": ["Pune", "Mumbai"],
+    "usual_devices": ["D101"],
+    "usual_merchants": ["M101", "M102", "M103"],
+    "usual_transaction_hours": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    "normal_transactions_per_hour": 2
+  },
+  {
+    "customer_id": "C102",
+    "average_amount": 5000,
+    "max_normal_amount": 12000,
+    "usual_locations": ["Mumbai"],
+    "usual_devices": ["D102", "D103"],
+    "usual_merchants": ["M201", "M202", "M203"],
+    "usual_transaction_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "normal_transactions_per_hour": 3
+  },
+  {
+    "customer_id": "C103",
+    "average_amount": 1200,
+    "max_normal_amount": 4000,
+    "usual_locations": ["Pune"],
+    "usual_devices": ["D104"],
+    "usual_merchants": ["M301", "M302"],
+    "usual_transaction_hours": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+    "normal_transactions_per_hour": 2
+  },
+  {
+    "customer_id": "C104",
+    "average_amount": 8000,
+    "max_normal_amount": 20000,
+    "usual_locations": ["Delhi", "Gurgaon"],
+    "usual_devices": ["D105"],
+    "usual_merchants": ["M401", "M402", "M403"],
+    "usual_transaction_hours": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    "normal_transactions_per_hour": 3
+  },
+  {
+    "customer_id": "C105",
+    "average_amount": 3000,
+    "max_normal_amount": 7500,
+    "usual_locations": ["Bengaluru"],
+    "usual_devices": ["D106", "D107"],
+    "usual_merchants": ["M501", "M502"],
+    "usual_transaction_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    "normal_transactions_per_hour": 2
+  }
+]
