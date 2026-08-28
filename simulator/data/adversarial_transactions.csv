@@ -1,4 +1,5 @@
 transaction_id,customer_id,account_id,card_id,device_id,merchant_id,beneficiary_id,amount,currency,location,timestamp,payment_method,is_fraud,attack_id
+
 TXDF9B265D36_ATK001_fcd87a,C0039,A0039,CARD0039,D558,M0074,B_NONE,1764.52,INR,Mumbai,2026-08-16T13:26:51,card,True,ATK001
 TX326C050F0E_ATK002_072363,C0029,A0029,CARD0029,D205,M0048,B_NONE,857.55,INR,Mumbai,2026-07-01T22:15:09,card,True,ATK002
 TXC263717A11_ATK003_db9637,C0083,A0083,CARD0083,D524,M0039,B_NONE,428.32,INR,Delhi,2026-06-29T13:01:26,wallet,True,ATK003
