@@ -1,0 +1,74 @@
+[
+  {
+    "attack_id": "ATK001",
+    "attack_type": "Account Takeover",
+    "priority": "high",
+    "target": "customer_account",
+    "amount_pattern": "near_normal",
+    "device_pattern": "new",
+    "location_pattern": "unusual",
+    "velocity": "medium",
+    "evasion_level": 3,
+    "description": "Compromises a legitimate customer account and performs transactions using changed device or location characteristics."
+  },
+  {
+    "attack_id": "ATK002",
+    "attack_type": "Card Payment Fraud",
+    "priority": "high",
+    "target": "payment",
+    "amount_pattern": "high",
+    "device_pattern": "new",
+    "location_pattern": "unusual",
+    "velocity": "high",
+    "evasion_level": 2,
+    "description": "Generates unauthorized payment activity using compromised payment credentials or card information."
+  },
+  {
+    "attack_id": "ATK003",
+    "attack_type": "Credential Stuffing",
+    "priority": "medium",
+    "target": "account",
+    "amount_pattern": "normal",
+    "device_pattern": "new",
+    "location_pattern": "unusual",
+    "velocity": "high",
+    "evasion_level": 3,
+    "description": "Simulates account compromise resulting from repeated use of previously compromised credentials."
+  },
+  {
+    "attack_id": "ATK004",
+    "attack_type": "Social Engineering GenAI Scam",
+    "priority": "high",
+    "target": "customer",
+    "amount_pattern": "near_normal",
+    "device_pattern": "known",
+    "location_pattern": "normal",
+    "velocity": "normal",
+    "evasion_level": 4,
+    "description": "Simulates a socially engineered transaction where the legitimate customer authorizes fraudulent activity."
+  },
+  {
+    "attack_id": "ATK005",
+    "attack_type": "Synthetic Identity Fraud",
+    "priority": "medium",
+    "target": "customer_account",
+    "amount_pattern": "normal",
+    "device_pattern": "synthetic",
+    "location_pattern": "normal",
+    "velocity": "medium",
+    "evasion_level": 3,
+    "description": "Simulates fraudulent activity involving a synthetic identity composed of artificial and legitimate attributes."
+  },
+  {
+    "attack_id": "ATK006",
+    "attack_type": "Adversarial Evasion",
+    "priority": "critical",
+    "target": "fraud_detection",
+    "amount_pattern": "near_normal",
+    "device_pattern": "variable",
+    "location_pattern": "normal",
+    "velocity": "variable",
+    "evasion_level": 5,
+    "description": "Adapts transaction characteristics to resemble legitimate behavior and reduce the probability of detection."
+  }
+]
