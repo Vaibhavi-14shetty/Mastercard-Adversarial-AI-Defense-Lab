@@ -1,0 +1,151 @@
+merchant_id,merchant_name,category,location,risk_level
+M0001,"Sarma, Bassi and Roy",Fuel,Mumbai,low
+M0002,Khanna-Sawhney,Entertainment,Bangalore,low
+M0003,"Mane, Sen and Kaur",Entertainment,Chennai,low
+M0004,"Khare, More and Singh",Grocery,Hyderabad,low
+M0005,Pillai Ltd,Fuel,Delhi,medium
+M0006,"Sastry, Shenoy and Manda",E-commerce,Pune,low
+M0007,Thakkar-Wable,Electronics,Mumbai,low
+M0008,Edwin-Iyengar,Healthcare,Kolkata,high
+M0009,"Devi, Krishna and Ben",E-commerce,Delhi,low
+M0010,"Srivastava, Prabhu and Chauhan",Entertainment,Kolkata,high
+M0011,"Varty, Dash and Mane",Utilities,Delhi,low
+M0012,Dyal LLC,Electronics,Kolkata,medium
+M0013,Varghese-Din,Grocery,Bangalore,low
+M0014,Chand-Kapadia,Utilities,Bangalore,medium
+M0015,Palla-Bala,Fashion,Delhi,medium
+M0016,Bera-Randhawa,Fashion,Pune,low
+M0017,"Prakash, Keer and Raju",Entertainment,Delhi,high
+M0018,Prasad and Sons,Fashion,Hyderabad,low
+M0019,Nagar Inc,Electronics,Mumbai,low
+M0020,"Nayak, Dhingra and Devan",Entertainment,Chennai,medium
+M0021,Mangat Group,Healthcare,Ahmedabad,medium
+M0022,"Dewan, Singh and Sen",Grocery,Kolkata,low
+M0023,"Ahluwalia, Buch and Bahl",Fashion,Bangalore,low
+M0024,Kale-Doctor,E-commerce,Mumbai,medium
+M0025,"Wable, Sampath and Choudhry",E-commerce,Mumbai,medium
+M0026,Khanna-Mitra,Healthcare,Chennai,medium
+M0027,Batta and Sons,Fuel,Kolkata,low
+M0028,Shankar-Bhatnagar,E-commerce,Ahmedabad,low
+M0029,Tata PLC,Fuel,Kolkata,low
+M0030,"Babu, Varma and Khurana",E-commerce,Kolkata,low
+M0031,"Dhawan, Manne and Sanghvi",Travel,Delhi,low
+M0032,Pandit and Sons,Utilities,Hyderabad,medium
+M0033,"Saha, Grover and Chada",Grocery,Chennai,medium
+M0034,"Patel, Bir and Vora",Fuel,Hyderabad,low
+M0035,"Tripathi, Tripathi and Bahri",Utilities,Mumbai,high
+M0036,Singhal-Bassi,Food Delivery,Bangalore,low
+M0037,"Ram, Prakash and Kulkarni",Utilities,Chennai,low
+M0038,"Babu, Parikh and Bir",Entertainment,Mumbai,low
+M0039,Khosla-Chawla,Food Delivery,Kolkata,low
+M0040,"Natarajan, Deol and Basu",Healthcare,Chennai,medium
+M0041,Nigam-Gill,Healthcare,Bangalore,low
+M0042,"Shetty, Srinivas and Gopal",Healthcare,Kolkata,low
+M0043,Bhatnagar Ltd,Healthcare,Pune,low
+M0044,Bansal-Memon,Food Delivery,Pune,low
+M0045,Bassi and Sons,Utilities,Pune,medium
+M0046,Mutti LLC,Food Delivery,Hyderabad,low
+M0047,"Rao, Solanki and Kulkarni",Utilities,Kolkata,low
+M0048,Halder LLC,Electronics,Pune,low
+M0049,Batta-Narula,Utilities,Ahmedabad,low
+M0050,Dash-Pillai,Utilities,Chennai,low
+M0051,Ratta-Sarraf,Fuel,Mumbai,low
+M0052,Nori-Grover,Entertainment,Pune,low
+M0053,Tank-Pillai,E-commerce,Delhi,medium
+M0054,"Loke, Butala and Samra",Food Delivery,Delhi,low
+M0055,Sani PLC,Entertainment,Pune,medium
+M0056,Memon LLC,Grocery,Ahmedabad,medium
+M0057,Buch LLC,Fashion,Pune,low
+M0058,"Merchant, Mohan and Sehgal",E-commerce,Hyderabad,low
+M0059,"Sandhu, Ganesan and Sawhney",Fuel,Kolkata,medium
+M0060,Sekhon-Basak,Travel,Ahmedabad,low
+M0061,"Pandit, Saran and Maharaj",Utilities,Hyderabad,low
+M0062,"Bhandari, Borde and Ravi",E-commerce,Kolkata,low
+M0063,Varghese-Dutta,Grocery,Chennai,low
+M0064,Dhar PLC,E-commerce,Hyderabad,low
+M0065,"Sarma, Banerjee and Date",Electronics,Ahmedabad,low
+M0066,Keer Ltd,Fuel,Chennai,medium
+M0067,Pathak-Rajagopal,Fuel,Hyderabad,low
+M0068,"Bali, Dube and Sengupta",Healthcare,Delhi,medium
+M0069,Prabhu-Sawhney,E-commerce,Kolkata,low
+M0070,Devan PLC,Fashion,Pune,low
+M0071,Rao-Murthy,Fuel,Hyderabad,medium
+M0072,"Mallick, Krish and Comar",Entertainment,Kolkata,low
+M0073,Grewal Group,E-commerce,Delhi,low
+M0074,"Ram, Dalal and Lala",Food Delivery,Ahmedabad,medium
+M0075,Sehgal-Kala,Travel,Hyderabad,medium
+M0076,"Mangal, Swaminathan and Iyengar",Healthcare,Bangalore,low
+M0077,Deshmukh Inc,Utilities,Bangalore,low
+M0078,Gera-Saxena,Healthcare,Bangalore,medium
+M0079,Nagarajan Ltd,Travel,Mumbai,low
+M0080,Bhattacharyya-Mannan,Food Delivery,Hyderabad,low
+M0081,Dugar-Ghosh,Travel,Chennai,low
+M0082,Trivedi-Kapur,Fuel,Ahmedabad,medium
+M0083,Iyer and Sons,Utilities,Pune,medium
+M0084,Tak Inc,E-commerce,Mumbai,low
+M0085,Pillay-Sibal,Food Delivery,Mumbai,medium
+M0086,"Dayal, Chadha and Bhatti",Entertainment,Hyderabad,low
+M0087,Rao-Srinivas,Fashion,Bangalore,high
+M0088,"Roy, Rout and Borah",Travel,Kolkata,high
+M0089,Nadig Ltd,Utilities,Bangalore,low
+M0090,Sengupta Group,Fashion,Mumbai,low
+M0091,"Varughese, Padmanabhan and Dave",Fashion,Chennai,low
+M0092,"Gopal, Dayal and Sant",Grocery,Ahmedabad,low
+M0093,"Bhakta, Dash and Vasa",Fashion,Bangalore,low
+M0094,Modi and Sons,Electronics,Bangalore,low
+M0095,Naidu Ltd,Entertainment,Kolkata,low
+M0096,Pal PLC,Utilities,Kolkata,low
+M0097,Brar-Krishna,Healthcare,Delhi,low
+M0098,Maharaj and Sons,Grocery,Chennai,medium
+M0099,"Mitter, Walla and Chander",Healthcare,Delhi,low
+M0100,"Ganguly, Dube and Garg",Grocery,Delhi,low
+M0101,"Nazareth, Barman and Balakrishnan",Travel,Hyderabad,low
+M0102,Bath Ltd,Entertainment,Hyderabad,low
+M0103,"Lanka, Kade and Saha",Grocery,Hyderabad,medium
+M0104,"Balasubramanian, Tank and Mann",Utilities,Chennai,low
+M0105,"Mittal, Subramanian and Konda",Fashion,Chennai,high
+M0106,"Ravi, Mishra and Setty",Utilities,Chennai,medium
+M0107,Bhasin and Sons,Fashion,Kolkata,low
+M0108,Sagar-Sule,Food Delivery,Bangalore,low
+M0109,Jani-Oak,Grocery,Bangalore,low
+M0110,"Dhawan, Munshi and Nagar",Grocery,Kolkata,medium
+M0111,"Pai, Rastogi and De",Fuel,Pune,low
+M0112,Varma-Cherian,Grocery,Mumbai,low
+M0113,Khurana-Shukla,Grocery,Pune,low
+M0114,Loke Group,Entertainment,Ahmedabad,low
+M0115,Dhaliwal Inc,Healthcare,Hyderabad,low
+M0116,Mannan Group,Fashion,Delhi,low
+M0117,"Sahota, Kothari and Dutta",Grocery,Hyderabad,low
+M0118,Munshi-Gupta,Electronics,Hyderabad,low
+M0119,Tara PLC,Fashion,Kolkata,medium
+M0120,Tara-Morar,Electronics,Mumbai,low
+M0121,Bajaj-Chana,Electronics,Ahmedabad,low
+M0122,Tiwari-Shankar,Food Delivery,Hyderabad,medium
+M0123,Kale PLC,Food Delivery,Chennai,low
+M0124,Bava-Bedi,Fuel,Bangalore,low
+M0125,Talwar-Singhal,Utilities,Delhi,low
+M0126,Yadav-Anand,Utilities,Chennai,low
+M0127,Sankar and Sons,Grocery,Mumbai,medium
+M0128,Pau-Rau,E-commerce,Ahmedabad,low
+M0129,Bath-Rattan,Electronics,Mumbai,low
+M0130,Hayer LLC,Electronics,Hyderabad,low
+M0131,"Mani, Borah and Raju",Utilities,Hyderabad,low
+M0132,"Seshadri, Mammen and Dani",Grocery,Mumbai,medium
+M0133,Chatterjee Group,Grocery,Hyderabad,low
+M0134,Nori-Pau,Travel,Kolkata,low
+M0135,Issac PLC,Electronics,Pune,low
+M0136,"Ratti, Tella and Baria",Fashion,Bangalore,low
+M0137,Barad and Sons,Utilities,Hyderabad,medium
+M0138,"Nath, Som and Venkataraman",Electronics,Chennai,medium
+M0139,Dixit-Varma,Fashion,Mumbai,low
+M0140,Narang PLC,Utilities,Hyderabad,medium
+M0141,Gaba-Ramaswamy,Utilities,Kolkata,low
+M0142,"Mistry, Nayar and Tripathi",Fashion,Mumbai,low
+M0143,"Walia, Suri and Mistry",Grocery,Bangalore,low
+M0144,Badal-Pillay,E-commerce,Ahmedabad,medium
+M0145,Choudhary-Saha,Utilities,Bangalore,low
+M0146,"Morar, Bala and Som",Travel,Pune,medium
+M0147,Kari-Behl,Fashion,Ahmedabad,medium
+M0148,"Srinivasan, Garde and Viswanathan",Electronics,Kolkata,low
+M0149,"Rai, Divan and Kibe",Electronics,Hyderabad,low
+M0150,Choudhary and Sons,Grocery,Delhi,high
