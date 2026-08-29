@@ -11,6 +11,7 @@ this file is the single source of truth.
 
 from datetime import datetime
 from typing import Optional, Literal
+
 from pydantic import BaseModel, Field
 
 
@@ -54,13 +55,9 @@ class Transaction(BaseModel):
 
 
 class SimulateRequest(BaseModel):
-<<<<<<< HEAD
-    """Input to POST /simulate — what Red Team (or you) sends in."""
-=======
     """Input to POST /simulate."""
 
     transaction_id: Optional[str] = None
->>>>>>> origin/feature/integration
 
     customer_id: str
     amount: float = Field(..., gt=0)
@@ -68,12 +65,9 @@ class SimulateRequest(BaseModel):
     device_id: str
     location: str
     beneficiary_id: Optional[str] = None
-    payment_method: Literal[
-        "card",
-        "upi",
-        "netbanking",
-        "wallet"
-    ] = "card"
+
+    payment_method: Literal["card", "upi", "netbanking", "wallet"] = "card"
+
     attack_id: Optional[str] = None
     timestamp: Optional[datetime] = None
 
@@ -83,11 +77,6 @@ class SimulateResponse(BaseModel):
 
     transaction_id: str
     timestamp: datetime
-<<<<<<< HEAD
-    simulation_status: Literal["success", "rejected"]
-    transaction: Optional[Transaction] = None
-    blue_team_result: Optional[dict] = None
-=======
 
     # Simulator execution status
     simulation_status: Literal["success", "rejected", "challenge"]
@@ -105,7 +94,9 @@ class SimulateResponse(BaseModel):
     temporal_risk_score: float
 
     # Human-readable explanation
-    reasons: list[str] = []
+    reasons: list[str] = Field(default_factory=list)
 
     transaction: Optional[Transaction] = None
->>>>>>> origin/feature/integration
+
+    # Optional detailed Blue Team output
+    blue_team_result: Optional[dict] = None
