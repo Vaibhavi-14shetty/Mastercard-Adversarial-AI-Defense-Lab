@@ -7,32 +7,28 @@ class BlueTeamFeedbackAdapter:
     @staticmethod
     def extract(analysis: dict) -> dict:
 
-        fraud_score = float(
-            analysis["risk"].get("fraud_score", 0)
-        )
+        risk = analysis.get("risk", {})
+        fraud = analysis.get("fraud", {})
+        behavior = analysis.get("behavior", {})
+        decision_data = analysis.get("decision", {})
 
-        behavior_score = float(
-            analysis["risk"].get("behavior_score", 0)
-        )
+        fraud_probability = float(fraud.get("fraud_probability", 0.0))
 
-        graph_score = float(
-            analysis["risk"].get("graph_risk_score", 0)
-        )
+        behavior_score = float(behavior.get("behavior_score", 0.0))
 
-        temporal_score = float(
-            analysis["risk"].get("temporal_risk_score", 0)
-        )
+        graph_score = float(risk.get("graph_risk_score", 0.0))
 
-        risk_score = float(
-            analysis["risk"].get("final_risk_score", 0)
-        )
+        temporal_score = float(risk.get("temporal_risk_score", 0.0))
 
-        decision = analysis["decision"]["decision"]
+        risk_score = float(risk.get("final_risk_score", 0.0))
+
+        decision = decision_data.get("decision", "UNKNOWN")
 
         detected_signals = []
 
         # Fraud model signal
-        if fraud_score >= 50:
+        # fraud_probability is 0-1
+        if fraud_probability >= 0.5:
             detected_signals.append("fraud")
 
         # Behavioral signal
