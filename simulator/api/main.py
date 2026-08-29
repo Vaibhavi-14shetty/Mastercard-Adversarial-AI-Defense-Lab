@@ -1,28 +1,22 @@
-<<<<<<< HEAD
-from datetime import datetime
-from pathlib import Path
-import uuid
-import re
-import numpy as np
-
-import pandas as pd
-from fastapi import FastAPI, HTTPException
-=======
 """
 main.py
-
 Payment Simulator API
 
 Flow:
+
     Simulator Transaction
+          ↓
+    Red Team Attack Generation
           ↓
     Blue Team Pipeline
           ↓
-    Fraud + Behavior + Graph
+    Fraud + Behavior + Graph + Temporal Risk
           ↓
     Risk Fusion
           ↓
     Decision
+          ↓
+    Evaluation
 """
 
 import re
@@ -30,10 +24,10 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
->>>>>>> origin/feature/integration
 
 from simulator.schemas.transaction_schema import (
     SimulateRequest,
@@ -42,41 +36,27 @@ from simulator.schemas.transaction_schema import (
 )
 
 from blue_team.pipeline import BlueTeamPipeline
-from red_team.api.red_team_api import router as red_team_router
-<<<<<<< HEAD
-from red_team.schemas.transaction import Transaction as RedTeamTransaction
 from blue_team.evaluator import Evaluator
 
-
-def make_json_safe(obj):
-    if isinstance(obj, dict):
-        return {key: make_json_safe(value) for key, value in obj.items()}
-
-    if isinstance(obj, list):
-        return [make_json_safe(value) for value in obj]
-
-    if isinstance(obj, tuple):
-        return [make_json_safe(value) for value in obj]
-
-    if isinstance(obj, np.generic):
-        return obj.item()
-
-    return obj
-
-
-app = FastAPI(
-    title="Mastercard AI Defense Lab - Transaction Simulator",
-    description="Simulator API connected to the Blue Team fraud defense pipeline.",
-    version="1.0.0",
-=======
+from red_team.api.red_team_api import router as red_team_router
+from red_team.schemas.transaction import Transaction as RedTeamTransaction
 from red_team.composer.attack_composer import AttackComposer
 from red_team.generator.attack_generator import AttackGenerator
 
+
+# ============================================================
+# APP
+# ============================================================
+
 app = FastAPI(
     title="Adversarial AI Defense Lab — Payment Simulator",
-    description="Synthetic payment simulator connected to the Blue Team fraud detection pipeline.",
+    description=(
+        "Synthetic payment simulator connected to the "
+        "Blue Team fraud detection pipeline."
+    ),
     version="1.0.0",
 )
+
 
 # ============================================================
 # CORS — FRONTEND CONNECTION
@@ -93,7 +73,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(red_team_router)
+
 
 # ============================================================
 # DATA / VALIDATION
@@ -137,11 +119,12 @@ def _load_lookup_tables():
     )
 
 
-KNOWN_CUSTOMER_IDS, ACCOUNT_BY_CUSTOMER, CARD_BY_CUSTOMER = (
-    _load_lookup_tables()
->>>>>>> origin/feature/integration
-)
-app.include_router(red_team_router)
+(
+    KNOWN_CUSTOMER_IDS,
+    ACCOUNT_BY_CUSTOMER,
+    CARD_BY_CUSTOMER,
+) = _load_lookup_tables()
+
 
 def validate_format(field_name: str, value: str) -> bool:
     """Validate ID structure without requiring existence."""
@@ -155,24 +138,61 @@ def validate_format(field_name: str, value: str) -> bool:
 
 
 # ============================================================
-# BLUE TEAM
+# BLUE TEAM / RED TEAM
 # ============================================================
 
 blue_team = BlueTeamPipeline()
 evaluator = Evaluator()
 
-
-def rejected_response():
-    return SimulateResponse(
-        transaction_id=f"TX{uuid.uuid4().hex[:10].upper()}",
-        timestamp=datetime.now(),
-        simulation_status="rejected",
-        transaction=None,
-        blue_team_result=None,
-    )
-
 attack_composer = AttackComposer()
 attack_generator = AttackGenerator()
+
+
+# ============================================================
+# HELPERS
+# ============================================================
+
+
+def make_json_safe(obj):
+    """Convert NumPy/Python objects into JSON-safe values."""
+
+    if isinstance(obj, dict):
+        return {key: make_json_safe(value) for key, value in obj.items()}
+
+    if isinstance(obj, list):
+        return [make_json_safe(value) for value in obj]
+
+    if isinstance(obj, tuple):
+        return [make_json_safe(value) for value in obj]
+
+    if isinstance(obj, np.generic):
+        return obj.item()
+
+    return obj
+
+
+def rejected_response(reasons=None):
+    """Create a standard rejected simulation response."""
+
+    return SimulateResponse(
+        transaction_id=f"TX{uuid.uuid4().hex[:10].upper()}",
+        timestamp=datetime.now(timezone.utc),
+        simulation_status="rejected",
+        security_decision="BLOCK",
+        risk_score=100.0,
+        fraud_probability=1.0,
+        behavior_score=0.0,
+        graph_risk_score=0.0,
+        temporal_risk_score=0.0,
+        reasons=reasons or [],
+        transaction=None,
+    )
+
+
+# ============================================================
+# STARTUP
+# ============================================================
+
 
 @app.on_event("startup")
 def initialize_blue_team():
@@ -189,6 +209,7 @@ def initialize_blue_team():
 # HEALTH CHECK
 # ============================================================
 
+
 @app.get("/")
 def root():
     return {
@@ -202,62 +223,15 @@ def root():
 def health_check():
     return {
         "status": "ok",
-<<<<<<< HEAD
-        "known_customers": (
-            len(blue_team.historical_data["customer_id"].unique())
-            if blue_team.historical_data is not None
-            else 0
-        ),
-    }
-
-
-# --------------------------------------------------
-# Simulate Transaction
-# --------------------------------------------------
-
-# --------------------------------------------------
-# Helper for rejected simulations
-# --------------------------------------------------
-
-
-def rejected_response():
-    return SimulateResponse(
-        transaction_id=f"TX{uuid.uuid4().hex[:10].upper()}",
-        timestamp=datetime.now(),
-        simulation_status="rejected",
-        transaction=None,
-        blue_team_result=None,
-    )
-
-
-# --------------------------------------------------
-# Helper for rejected simulations
-# --------------------------------------------------
-
-
-def rejected_response():
-    return SimulateResponse(
-        transaction_id=f"TX{uuid.uuid4().hex[:10].upper()}",
-        timestamp=datetime.now(),
-        simulation_status="rejected",
-        transaction=None,
-        blue_team_result=None,
-    )
-
-
-# --------------------------------------------------
-# Simulate Transaction
-# --------------------------------------------------
-=======
         "known_customers": len(KNOWN_CUSTOMER_IDS),
         "blue_team_ready": blue_team.is_ready,
     }
->>>>>>> origin/feature/integration
 
 
 # ============================================================
 # SIMULATE TRANSACTION
 # ============================================================
+
 
 @app.post("/simulate", response_model=SimulateResponse)
 def simulate_transaction(request: SimulateRequest):
@@ -268,69 +242,23 @@ def simulate_transaction(request: SimulateRequest):
             detail="Blue Team is not initialized.",
         )
 
-<<<<<<< HEAD
-    # --------------------------------------------------
-    # Validate ID formats
-    # --------------------------------------------------
-
-    if not re.fullmatch(r"C\d{4}", request.customer_id):
-        return rejected_response()
-
-    if not request.merchant_id.strip():
-        return rejected_response()
-
-    if request.beneficiary_id is not None:
-        if not re.fullmatch(r"B\d{4}", request.beneficiary_id):
-            return rejected_response()
-
-    # --------------------------------------------------
-    # Customer existence check
-    # --------------------------------------------------
-
-    customer_accounts = blue_team.historical_data[
-        blue_team.historical_data["customer_id"] == request.customer_id
-    ]
-
-    if customer_accounts.empty:
-        return rejected_response()
-
-    # --------------------------------------------------
-    # Generate transaction ID and timestamp
-    # --------------------------------------------------
-=======
     rejection_reasons = []
->>>>>>> origin/feature/integration
 
     # --------------------------------------------------------
     # 1. Validate ID formats
     # --------------------------------------------------------
 
-<<<<<<< HEAD
-    timestamp = datetime.now()
-
-    # --------------------------------------------------
-    # Resolve account and card for customer
-    # --------------------------------------------------
-
-    customer_accounts = blue_team.historical_data[
-        blue_team.historical_data["customer_id"] == request.customer_id
-    ]
-
-    if customer_accounts.empty:
-        return rejected_response()
-=======
     if not validate_format(
         "customer_id",
-        request.customer_id
+        request.customer_id,
     ):
         rejection_reasons.append(
             f"customer_id '{request.customer_id}' has invalid format"
         )
->>>>>>> origin/feature/integration
 
     if not validate_format(
         "merchant_id",
-        request.merchant_id
+        request.merchant_id,
     ):
         rejection_reasons.append(
             f"merchant_id '{request.merchant_id}' has invalid format"
@@ -338,18 +266,13 @@ def simulate_transaction(request: SimulateRequest):
 
     if not validate_format(
         "device_id",
-        request.device_id
+        request.device_id,
     ):
-        rejection_reasons.append(
-            f"device_id '{request.device_id}' has invalid format"
-        )
+        rejection_reasons.append(f"device_id '{request.device_id}' has invalid format")
 
-    if (
-        request.beneficiary_id
-        and not validate_format(
-            "beneficiary_id",
-            request.beneficiary_id
-        )
+    if request.beneficiary_id and not validate_format(
+        "beneficiary_id",
+        request.beneficiary_id,
     ):
         rejection_reasons.append(
             f"beneficiary_id '{request.beneficiary_id}' has invalid format"
@@ -361,8 +284,7 @@ def simulate_transaction(request: SimulateRequest):
 
     if request.customer_id not in KNOWN_CUSTOMER_IDS:
         rejection_reasons.append(
-            f"customer_id '{request.customer_id}' "
-            "does not exist in the synthetic world"
+            f"customer_id '{request.customer_id}' does not exist in the synthetic world"
         )
 
     # --------------------------------------------------------
@@ -370,36 +292,26 @@ def simulate_transaction(request: SimulateRequest):
     # --------------------------------------------------------
 
     if rejection_reasons:
-        return SimulateResponse(
-            transaction_id=f"TX{uuid.uuid4().hex[:10].upper()}",
-            timestamp=datetime.now(timezone.utc),
-            simulation_status="rejected",
-            security_decision="BLOCK",
-            risk_score=100.0,
-            fraud_probability=1.0,
-            behavior_score=0.0,
-            graph_risk_score=0.0,
-            temporal_risk_score=0.0,
-            reasons=rejection_reasons,
-            transaction=None,
-        )
+        return rejected_response(rejection_reasons)
 
     # --------------------------------------------------------
     # 4. Resolve account and card
     # --------------------------------------------------------
 
-    account_id = ACCOUNT_BY_CUSTOMER[request.customer_id]
-    card_id = CARD_BY_CUSTOMER[request.customer_id]
+    account_id = ACCOUNT_BY_CUSTOMER.get(request.customer_id)
 
-    transaction_id = request.transaction_id or (
-        f"TX{uuid.uuid4().hex[:10].upper()}"
-    )
-    
-    timestamp = request.timestamp or datetime.now(timezone.utc)
+    card_id = CARD_BY_CUSTOMER.get(request.customer_id)
+
+    if account_id is None or card_id is None:
+        return rejected_response(["Customer account/card mapping not found."])
 
     # --------------------------------------------------------
     # 5. Build transaction
     # --------------------------------------------------------
+
+    transaction_id = request.transaction_id or (f"TX{uuid.uuid4().hex[:10].upper()}")
+
+    timestamp = request.timestamp or datetime.now(timezone.utc)
 
     transaction = Transaction(
         transaction_id=transaction_id,
@@ -417,93 +329,93 @@ def simulate_transaction(request: SimulateRequest):
         is_fraud=False,
         attack_id=None,
     )
-    
+
     # --------------------------------------------------------
     # 6. RED TEAM ATTACK GENERATION
     # --------------------------------------------------------
 
     if request.attack_id:
-
         try:
-            attack = attack_composer.get_attack(
-                request.attack_id
-            )
+            attack = attack_composer.get_attack(request.attack_id)
 
             transaction = attack_generator.generate(
                 transaction,
-                attack
+                attack,
             )
 
         except ValueError as exc:
-
             raise HTTPException(
                 status_code=404,
-                detail=str(exc)
+                detail=str(exc),
             )
 
         except Exception as exc:
-
             raise HTTPException(
                 status_code=500,
-                detail=f"Attack generation failed: {str(exc)}"
+                detail=f"Attack generation failed: {str(exc)}",
             )
 
     # --------------------------------------------------------
-    # 6. Send transaction to Blue Team
+    # 7. Send transaction to Blue Team
     # --------------------------------------------------------
 
     transaction_dict = transaction.model_dump()
 
-    # Preserve any timestamp modifications made by the Red Team
+    # Preserve timestamp modifications made by Red Team.
     transaction_dict["timestamp"] = transaction.timestamp.isoformat()
 
     try:
-
         analysis = blue_team.analyze(transaction_dict)
 
     except Exception as exc:
-
         raise HTTPException(
             status_code=500,
             detail=f"Blue Team analysis failed: {str(exc)}",
         )
 
     # --------------------------------------------------------
-    # 7. Determine simulator status
+    # 8. Determine simulator status
     # --------------------------------------------------------
 
     decision = analysis["decision"]["decision"]
 
     if decision == "BLOCK":
-
         simulation_status = "rejected"
 
     elif decision == "CHALLENGE":
-
         simulation_status = "challenge"
 
     else:
-
         simulation_status = "success"
+
     # --------------------------------------------------------
-    # 8. Return transaction
+    # 9. Return transaction + Blue Team analysis
     # --------------------------------------------------------
 
     return SimulateResponse(
-<<<<<<< HEAD
         transaction_id=transaction_id,
-        timestamp=timestamp,
+        timestamp=transaction.timestamp,
         simulation_status=simulation_status,
+        security_decision=decision,
+        risk_score=analysis["risk"]["final_risk_score"],
+        fraud_probability=analysis["fraud"]["fraud_probability"],
+        behavior_score=analysis["behavior"]["behavior_score"],
+        graph_risk_score=analysis["risk"]["graph_risk_score"],
+        temporal_risk_score=analysis["risk"]["temporal_risk_score"],
+        reasons=analysis["explanation"]["reasons"],
         transaction=transaction,
     )
 
 
-# --------------------------------------------------
-# Red Team → Simulator → Blue Team
-# --------------------------------------------------
+# ============================================================
+# RED TEAM → SIMULATOR → BLUE TEAM
+# ============================================================
 
 
-@app.post("/simulate/adversarial", response_model=SimulateResponse)
+@app.post(
+    "/simulate/adversarial",
+    response_model=SimulateResponse,
+)
 def simulate_adversarial_transaction(
     transaction: RedTeamTransaction,
 ) -> SimulateResponse:
@@ -533,11 +445,12 @@ def simulate_adversarial_transaction(
         )
 
     decision = analysis["decision"]["decision"]
+
     simulation_status = "rejected" if decision == "BLOCK" else "success"
 
-    # --------------------------------------------------
+    # --------------------------------------------------------
     # Evaluate Blue Team decision
-    # --------------------------------------------------
+    # --------------------------------------------------------
 
     evaluation_input = {
         "transaction_id": transaction.transaction_id,
@@ -549,13 +462,22 @@ def simulate_adversarial_transaction(
     evaluation = evaluator.evaluate([evaluation_input])
 
     clean_transaction = make_json_safe(transaction.model_dump())
+
     clean_analysis = make_json_safe(analysis)
+
     clean_evaluation = make_json_safe(evaluation)
 
     return SimulateResponse(
         transaction_id=transaction.transaction_id,
         timestamp=transaction.timestamp,
         simulation_status=simulation_status,
+        security_decision=decision,
+        risk_score=analysis["risk"]["final_risk_score"],
+        fraud_probability=analysis["fraud"]["fraud_probability"],
+        behavior_score=analysis["behavior"]["behavior_score"],
+        graph_risk_score=analysis["risk"]["graph_risk_score"],
+        temporal_risk_score=analysis["risk"]["temporal_risk_score"],
+        reasons=analysis["explanation"]["reasons"],
         transaction=clean_transaction,
         blue_team_result={
             **clean_analysis,
@@ -564,39 +486,11 @@ def simulate_adversarial_transaction(
     )
 
 
-# --------------------------------------------------
-# Run directly
-# --------------------------------------------------
-=======
-    transaction_id=transaction.transaction_id,
-    timestamp=transaction.timestamp,
-    simulation_status=simulation_status,
-
-    security_decision=decision,
-
-    risk_score=analysis["risk"]["final_risk_score"],
-
-    fraud_probability=analysis["fraud"]["fraud_probability"],
-
-    behavior_score=analysis["behavior"]["behavior_score"],
-
-    graph_risk_score=analysis["risk"]["graph_risk_score"],
-
-    temporal_risk_score=analysis["risk"]["temporal_risk_score"],
-
-    reasons=analysis["explanation"]["reasons"],
-
-    transaction=transaction,
-)
-
-
 # ============================================================
 # RUN DIRECTLY
 # ============================================================
->>>>>>> origin/feature/integration
 
 if __name__ == "__main__":
-
     import uvicorn
 
     uvicorn.run(
@@ -604,8 +498,4 @@ if __name__ == "__main__":
         host="127.0.0.1",
         port=8000,
         reload=True,
-<<<<<<< HEAD
     )
-=======
-    )
->>>>>>> origin/feature/integration
