@@ -55,6 +55,7 @@ class Transaction(BaseModel):
 
 class SimulateRequest(BaseModel):
     """Input to POST /simulate — what Red Team (or you) sends in."""
+
     customer_id: str
     amount: float = Field(..., gt=0)
     merchant_id: str
@@ -67,7 +68,9 @@ class SimulateRequest(BaseModel):
 
 class SimulateResponse(BaseModel):
     """Output of POST /simulate."""
+
     transaction_id: str
     timestamp: datetime
     simulation_status: Literal["success", "rejected"]
     transaction: Optional[Transaction] = None
+    blue_team_result: Optional[dict] = None
