@@ -807,49 +807,90 @@ VS Code
 📁 Project Structure
 Mastercard-Adversarial-AI-Defense-Lab/
 │
+├── blue_team/
+│   ├── __pycache__/
+│   │
+│   ├── aggregate_evaluation.py
+│   ├── behavioral_engine.py
+│   ├── behavioral_profiles.json
+│   ├── decision_engine.py
+│   ├── evaluator.py
+│   ├── explainability.py
+│   ├── feature_engineering.py
+│   ├── fraud_model.py
+│   ├── graph_risk.py
+│   ├── pipeline.py
+│   ├── risk_fusion.py
+│   ├── temporal_risk.py
+│   │
+│   ├── test_fraud_model.py
+│   ├── test_graph_risk.py
+│   └── transaction_schema.py
+│
+├── docs/
+│   └── SENTINEL_X_INTEGRATION...
+│
+├── frontend/
+│   ├── app.js
+│   ├── index.html
+│   └── style.css
+│
 ├── red_team/
+│   ├── __pycache__/
+│   │
+│   ├── adaptive/
+│   │   ├── __init__.py
+│   │   └── adaptive_engine.py
 │   │
 │   ├── agent/
+│   │   ├── __init__.py
 │   │   ├── adaptive_attack.py
 │   │   └── feedback_adapter.py
 │   │
-│   ├── adaptive/
-│   │   ├── adaptive_engine.py
-│   │   └── __init__.py
-│   │
 │   ├── api/
+│   │   ├── __pycache__/
+│   │   ├── __init__.py
 │   │   └── red_team_api.py
 │   │
+│   ├── composer/
+│   │
 │   ├── feedback/
+│   │   ├── __init__.py
 │   │   └── feedback_builder.py
 │   │
 │   ├── generator/
-│   │   └── attack_generator.py
+│   │
+│   ├── knowledge_base/
 │   │
 │   └── schemas/
+│       ├── __pycache__/
+│       ├── __init__.py
 │       ├── attack_dna.py
-│       ├── feedback.py
-│       └── transaction.py
+│       ├── transaction.py
+│       └── test_schema.py
 │
 ├── simulator/
+│   ├── __pycache__/
 │   │
 │   ├── api/
+│   │   ├── __pycache__/
+│   │   ├── __init__.py
 │   │   └── main.py
 │   │
-│   └── schemas/
-│       └── transaction_schema.py
-│
-├── frontend/
-│   ├── index.html
-│   ├── app.js
-│   └── style.css
-│
-├── docs/
-│   └── SENTINEL_X_INTEGRATION.md
+│   ├── data/
+│   ├── generators/
+│   ├── schemas/
+│   ├── tests/
+│   │
+│   └── __init__.py
 │
 ├── .gitignore
+├── evaluate_attacks.py
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── test_attacks.py
+
+
 🚀 How to Run
 1. Clone the repository
 git clone https://github.com/Vaibhavi-14shetty/Mastercard-Adversarial-AI-Defense-Lab.git
