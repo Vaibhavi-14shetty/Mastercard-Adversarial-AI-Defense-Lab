@@ -1,9 +1,11 @@
 import pandas as pd
+import json
 
 from blue_team.feature_engineering import build_features
 from blue_team.fraud_model import FraudModel
 from blue_team.behavioral_engine import calculate_behavior_score
 from blue_team.graph_risk import GraphRiskEngine
+from blue_team.temporal_risk import TemporalRiskEngine
 from blue_team.risk_fusion import RiskFusionEngine
 from blue_team.decision_engine import DecisionEngine
 from blue_team.explainability import ExplainabilityEngine
@@ -16,7 +18,8 @@ class BlueTeamPipeline:
 
         self.fraud_model = FraudModel()
         self.graph_engine = None
-
+        self.temporal_engine = None
+        
         self.fusion_engine = RiskFusionEngine()
         self.decision_engine = DecisionEngine()
         self.explainability_engine = ExplainabilityEngine()
@@ -36,10 +39,18 @@ class BlueTeamPipeline:
 
         print("Building transaction graph...")
 
-        raw_transactions = pd.read_csv("simulator/data/transactions_historical.csv")
+        raw_transactions = pd.read_csv(
+            "simulator/data/transactions_historical.csv"
+        )
 
         self.graph_engine = GraphRiskEngine(raw_transactions)
 
+        print("Building temporal risk engine...")
+
+        self.temporal_engine = TemporalRiskEngine(
+            raw_transactions
+        )
+        
         print("Loading behavioral profiles...")
 
         self.behavior_profiles = pd.read_csv("simulator/data/behavior_profiles.csv")
@@ -48,50 +59,147 @@ class BlueTeamPipeline:
 
         print("Blue Team pipeline initialized successfully.")
 
+
+    
+    def _parse_list(self, value):
+            """
+            Convert either:
+                ["A", "B"]
+            or:
+                A,B
+            into a Python list.
+            """
+
+            if value is None:
+                return []
+
+            text = str(value).strip()
+
+            try:
+                parsed = json.loads(text)
+
+                if isinstance(parsed, list):
+                    return [str(item).strip() for item in parsed]
+
+            except Exception:
+                pass
+
+            return [
+                item.strip()
+                for item in text.split(",")
+                if item.strip()
+            ]
+
+
+   
     def _get_behavior_profile(self, customer_id):
-        """Build the behavioral profile expected by the behavioral engine."""
+        """
+        Convert the CSV behavioral profile into the format
+        expected by behavioral_engine.py.
+        """
 
         profile = self.behavior_profiles[
-            self.behavior_profiles["customer_id"] == customer_id
+            self.behavior_profiles["customer_id"].astype(str)
+            == str(customer_id)
         ]
+
+        # --------------------------------------------------
+        # Unknown customer
+        # --------------------------------------------------
 
         if profile.empty:
             return {
+                "typical_amount": 0,
                 "max_normal_amount": float("inf"),
                 "usual_locations": [],
                 "usual_devices": [],
+                "usual_merchants": [],
                 "usual_transaction_hours": list(range(24)),
+                "normal_transactions_per_hour": 999,
             }
 
         row = profile.iloc[0]
 
+        # --------------------------------------------------
+        # Amount profile
+        # --------------------------------------------------
+
         typical_amount = float(row["typical_amount"])
         amount_std = float(row["amount_std"])
 
+        # 3-sigma upper normal spending threshold
         max_normal_amount = typical_amount + (3 * amount_std)
 
-        usual_locations = [str(row["typical_location"]).strip()]
+        # --------------------------------------------------
+        # Devices
+        # --------------------------------------------------
 
-        usual_devices = [
-            device.strip() for device in str(row["typical_device_ids"]).split(",")
+        usual_devices = self._parse_list(
+            row["typical_device_ids"]
+        )
+
+        # --------------------------------------------------
+        # Locations
+        # --------------------------------------------------
+
+        usual_locations = [
+            str(row["typical_location"]).strip()
         ]
+
+        # --------------------------------------------------
+        # Merchants
+        # --------------------------------------------------
+
+        usual_merchants = self._parse_list(
+            row["preferred_merchant_ids"]
+        )
+
+        # --------------------------------------------------
+        # Transaction hours
+        # --------------------------------------------------
 
         start_hour = int(row["typical_hour_start"])
         end_hour = int(row["typical_hour_end"])
 
         if start_hour <= end_hour:
-            usual_transaction_hours = list(range(start_hour, end_hour + 1))
+            usual_transaction_hours = list(
+                range(start_hour, end_hour + 1)
+            )
         else:
-            usual_transaction_hours = list(range(start_hour, 24)) + list(
-                range(0, end_hour + 1)
+            # Handles profiles such as 22:00 -> 06:00
+            usual_transaction_hours = (
+                list(range(start_hour, 24))
+                + list(range(0, end_hour + 1))
             )
 
+        # --------------------------------------------------
+        # Transaction frequency
+        # --------------------------------------------------
+
+        # CSV contains transactions per week.
+        # Convert approximately to transactions per hour.
+        txns_per_week = float(row["txns_per_week"])
+
+        normal_transactions_per_hour = txns_per_week / (
+            7 * 24
+        )
+
+        # --------------------------------------------------
+        # Final normalized profile
+        # --------------------------------------------------
+
         return {
+            "typical_amount": typical_amount,
             "max_normal_amount": max_normal_amount,
             "usual_locations": usual_locations,
             "usual_devices": usual_devices,
+            "usual_merchants": usual_merchants,
             "usual_transaction_hours": usual_transaction_hours,
+            "normal_transactions_per_hour": normal_transactions_per_hour,
         }
+
+
+
 
     def analyze(self, transaction):
         """Run one transaction through the complete Blue Team."""
@@ -127,12 +235,26 @@ class BlueTeamPipeline:
         profile = self._get_behavior_profile(customer_id)
 
         # Normalize values before Pydantic validation
-        transaction_dict["timestamp"] = str(transaction_dict["timestamp"])
 
-        if pd.isna(transaction_dict.get("attack_id")):
-            transaction_dict["attack_id"] = None
-        else:
-            transaction_dict["attack_id"] = str(transaction_dict["attack_id"])
+        transaction_dict["timestamp"] = str(
+            transaction_dict["timestamp"]
+        )
+
+        # Convert Pandas NaN values to None
+        for key, value in list(transaction_dict.items()):
+            if pd.isna(value):
+                transaction_dict[key] = None
+
+        # Normalize optional string fields
+        if transaction_dict.get("attack_id") is not None:
+            transaction_dict["attack_id"] = str(
+                transaction_dict["attack_id"]
+            )
+
+        if transaction_dict.get("beneficiary_id") is not None:
+            transaction_dict["beneficiary_id"] = str(
+                transaction_dict["beneficiary_id"]
+            )
 
         transaction_object = Transaction(**transaction_dict)
 
@@ -145,6 +267,13 @@ class BlueTeamPipeline:
         graph_result = self.graph_engine.calculate_risk(transaction_dict)
 
         # --------------------------------------------------
+        # 4b. Temporal / Sequence Risk
+        # --------------------------------------------------
+
+        temporal_result = self.temporal_engine.calculate_risk(
+            transaction_dict
+        )
+        # --------------------------------------------------
         # 5. Risk Fusion
         # --------------------------------------------------
 
@@ -152,6 +281,7 @@ class BlueTeamPipeline:
             fraud_probability=fraud_result["fraud_probability"],
             behavior_score=behavior_result["behavior_score"],
             graph_risk_score=graph_result["graph_risk_score"],
+            temporal_risk_score=temporal_result["temporal_risk_score"],
         )
 
         # --------------------------------------------------
@@ -181,6 +311,7 @@ class BlueTeamPipeline:
             "fraud": fraud_result,
             "behavior": behavior_result,
             "graph": graph_result,
+            "temporal": temporal_result,
             "risk": fusion_result,
             "decision": decision_result,
             "explanation": explanation,

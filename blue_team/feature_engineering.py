@@ -14,6 +14,9 @@ def build_features(data=None):
     2. A supplied transaction DataFrame (data=<DataFrame>)
     """
 
+    # True when processing a live/adversarial transaction
+    is_live_transaction = data is not None
+
     # --------------------------------------------------
     # Load transaction data
     # --------------------------------------------------
@@ -33,19 +36,27 @@ def build_features(data=None):
     data["day_of_week"] = data["timestamp"].dt.dayofweek
 
     # --------------------------------------------------
-    # Customer historical average amount
+    # Customer amount baseline
     # --------------------------------------------------
 
     if "customer_avg_amount" not in data.columns:
-        customer_avg = data.groupby("customer_id")["amount"].transform("mean")
 
-        data["customer_avg_amount"] = customer_avg
+        if is_live_transaction:
+            # Temporary placeholder.
+            # The actual customer baseline will be assigned
+            # from typical_amount after the behavioral profile
+            # is merged below.
+            data["customer_avg_amount"] = pd.NA
 
-    # --------------------------------------------------
-    # Amount deviation
-    # --------------------------------------------------
+        else:
+            # Historical training data:
+            # calculate the actual customer historical average.
+            customer_avg = (
+                data.groupby("customer_id")["amount"]
+                .transform("mean")
+            )
 
-    data["amount_deviation"] = (data["amount"] - data["customer_avg_amount"]).abs()
+            data["customer_avg_amount"] = customer_avg
 
     # --------------------------------------------------
     # Behavioral profiles
@@ -71,6 +82,21 @@ def build_features(data=None):
     )
 
     # --------------------------------------------------
+    # Finalize customer amount baseline
+    # --------------------------------------------------
+
+    if is_live_transaction:
+        data["customer_avg_amount"] = data["typical_amount"]
+
+    # --------------------------------------------------
+    # Amount deviation
+    # --------------------------------------------------
+
+    data["amount_deviation"] = (
+        data["amount"] - data["customer_avg_amount"]
+    ).abs()
+
+    # --------------------------------------------------
     # Profile amount deviation
     # --------------------------------------------------
 
@@ -82,9 +108,9 @@ def build_features(data=None):
     # Location anomaly
     # --------------------------------------------------
 
-    data["location_anomaly"] = (data["location"] != data["typical_location"]).astype(
-        int
-    )
+    data["location_anomaly"] = (
+        data["location"] != data["typical_location"]
+    ).astype(int)
 
     # --------------------------------------------------
     # Hour anomaly
@@ -100,9 +126,12 @@ def build_features(data=None):
     # --------------------------------------------------
 
     if "is_trusted" not in data.columns:
+
         devices = pd.read_csv(DEVICE_PATH)
 
-        devices = devices[["device_id", "is_trusted"]].drop_duplicates("device_id")
+        devices = devices[
+            ["device_id", "is_trusted"]
+        ].drop_duplicates("device_id")
 
         data = data.merge(
             devices,
@@ -110,18 +139,23 @@ def build_features(data=None):
             how="left",
         )
 
-    data["is_trusted"] = data["is_trusted"].fillna(False).astype(int)
+    data["is_trusted"] = (
+        data["is_trusted"]
+        .fillna(False)
+        .astype(int)
+    )
 
     # --------------------------------------------------
     # Merchant risk
     # --------------------------------------------------
 
     if "risk_level" not in data.columns:
+
         merchants = pd.read_csv(MERCHANT_PATH)
 
-        merchants = merchants[["merchant_id", "risk_level"]].drop_duplicates(
-            "merchant_id"
-        )
+        merchants = merchants[
+            ["merchant_id", "risk_level"]
+        ].drop_duplicates("merchant_id")
 
         data = data.merge(
             merchants,
@@ -135,7 +169,12 @@ def build_features(data=None):
         "high": 100,
     }
 
-    data["merchant_risk_score"] = data["risk_level"].map(risk_mapping).fillna(0)
+    data["merchant_risk_score"] = (
+        data["risk_level"]
+        .map(risk_mapping)
+        .fillna(0)
+    )
+
     # --------------------------------------------------
     # Cleanup
     # --------------------------------------------------
@@ -155,6 +194,7 @@ def build_features(data=None):
 
 
 if __name__ == "__main__":
+
     print("Feature engineering test...")
 
     features = build_features()
@@ -182,3 +222,4 @@ if __name__ == "__main__":
     print("\nSample:")
 
     print(features.head())
+
