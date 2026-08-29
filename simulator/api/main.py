@@ -22,6 +22,7 @@ from pathlib import Path
 
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from simulator.schemas.transaction_schema import (
     SimulateRequest,
@@ -30,7 +31,9 @@ from simulator.schemas.transaction_schema import (
 )
 
 from blue_team.pipeline import BlueTeamPipeline
-
+from red_team.api.red_team_api import router as red_team_router
+from red_team.composer.attack_composer import AttackComposer
+from red_team.generator.attack_generator import AttackGenerator
 
 app = FastAPI(
     title="Adversarial AI Defense Lab — Payment Simulator",
@@ -38,6 +41,22 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# ============================================================
+# CORS — FRONTEND CONNECTION
+# ============================================================
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(red_team_router)
 
 # ============================================================
 # DATA / VALIDATION
@@ -48,7 +67,7 @@ DATA_DIR = Path("simulator/data")
 ID_PATTERNS = {
     "customer_id": re.compile(r"^C\d{4,}$"),
     "merchant_id": re.compile(r"^M\d{4,}$"),
-    "device_id": re.compile(r"^D\d{2,}$"),
+    "device_id": re.compile(r"^(D\d{2,}|SYN\d{4,})$"),
     "beneficiary_id": re.compile(r"^B\d{2,}$"),
 }
 
@@ -103,6 +122,8 @@ def validate_format(field_name: str, value: str) -> bool:
 
 blue_team = BlueTeamPipeline()
 
+attack_composer = AttackComposer()
+attack_generator = AttackGenerator()
 
 @app.on_event("startup")
 def initialize_blue_team():
@@ -210,6 +231,13 @@ def simulate_transaction(request: SimulateRequest):
             transaction_id=f"TX{uuid.uuid4().hex[:10].upper()}",
             timestamp=datetime.now(timezone.utc),
             simulation_status="rejected",
+            security_decision="BLOCK",
+            risk_score=100.0,
+            fraud_probability=1.0,
+            behavior_score=0.0,
+            graph_risk_score=0.0,
+            temporal_risk_score=0.0,
+            reasons=rejection_reasons,
             transaction=None,
         )
 
@@ -220,9 +248,11 @@ def simulate_transaction(request: SimulateRequest):
     account_id = ACCOUNT_BY_CUSTOMER[request.customer_id]
     card_id = CARD_BY_CUSTOMER[request.customer_id]
 
-    transaction_id = f"TX{uuid.uuid4().hex[:10].upper()}"
-
-    timestamp = datetime.now(timezone.utc)
+    transaction_id = request.transaction_id or (
+        f"TX{uuid.uuid4().hex[:10].upper()}"
+    )
+    
+    timestamp = request.timestamp or datetime.now(timezone.utc)
 
     # --------------------------------------------------------
     # 5. Build transaction
@@ -242,8 +272,38 @@ def simulate_transaction(request: SimulateRequest):
         timestamp=timestamp,
         payment_method=request.payment_method,
         is_fraud=False,
-        attack_id=request.attack_id,
+        attack_id=None,
     )
+    
+    # --------------------------------------------------------
+    # 6. RED TEAM ATTACK GENERATION
+    # --------------------------------------------------------
+
+    if request.attack_id:
+
+        try:
+            attack = attack_composer.get_attack(
+                request.attack_id
+            )
+
+            transaction = attack_generator.generate(
+                transaction,
+                attack
+            )
+
+        except ValueError as exc:
+
+            raise HTTPException(
+                status_code=404,
+                detail=str(exc)
+            )
+
+        except Exception as exc:
+
+            raise HTTPException(
+                status_code=500,
+                detail=f"Attack generation failed: {str(exc)}"
+            )
 
     # --------------------------------------------------------
     # 6. Send transaction to Blue Team
@@ -251,7 +311,8 @@ def simulate_transaction(request: SimulateRequest):
 
     transaction_dict = transaction.model_dump()
 
-    transaction_dict["timestamp"] = timestamp.isoformat()
+    # Preserve any timestamp modifications made by the Red Team
+    transaction_dict["timestamp"] = transaction.timestamp.isoformat()
 
     try:
 
@@ -271,20 +332,41 @@ def simulate_transaction(request: SimulateRequest):
     decision = analysis["decision"]["decision"]
 
     if decision == "BLOCK":
-        simulation_status = "rejected"
-    else:
-        simulation_status = "success"
 
+        simulation_status = "rejected"
+
+    elif decision == "CHALLENGE":
+
+        simulation_status = "challenge"
+
+    else:
+
+        simulation_status = "success"
     # --------------------------------------------------------
     # 8. Return transaction
     # --------------------------------------------------------
 
     return SimulateResponse(
-        transaction_id=transaction_id,
-        timestamp=timestamp,
-        simulation_status=simulation_status,
-        transaction=transaction,
-    )
+    transaction_id=transaction.transaction_id,
+    timestamp=transaction.timestamp,
+    simulation_status=simulation_status,
+
+    security_decision=decision,
+
+    risk_score=analysis["risk"]["final_risk_score"],
+
+    fraud_probability=analysis["fraud"]["fraud_probability"],
+
+    behavior_score=analysis["behavior"]["behavior_score"],
+
+    graph_risk_score=analysis["risk"]["graph_risk_score"],
+
+    temporal_risk_score=analysis["risk"]["temporal_risk_score"],
+
+    reasons=analysis["explanation"]["reasons"],
+
+    transaction=transaction,
+)
 
 
 # ============================================================

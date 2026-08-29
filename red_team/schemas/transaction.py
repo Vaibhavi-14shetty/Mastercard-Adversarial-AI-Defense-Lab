@@ -11,7 +11,7 @@ class Transaction(BaseModel):
     card_id: str
     device_id: str
     merchant_id: str
-    beneficiary_id: str
+    beneficiary_id: Optional[str] = None
 
     amount: float = Field(gt=0)
     currency: str = "INR"
