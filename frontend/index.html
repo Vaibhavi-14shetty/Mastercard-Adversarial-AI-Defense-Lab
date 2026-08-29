@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sentinel-X | Adversarial AI Defense Lab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">SX</div>
+
+            <div>
+                <h1>Sentinel-X</h1>
+                <span>Adversarial AI Defense Lab</span>
+            </div>
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            BLUE TEAM ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <!-- Dashboard heading -->
+
+        <section class="hero">
+
+            <div>
+                <p class="eyebrow">MASTERcard PAYMENT SECURITY</p>
+
+                <h2>
+                    Adversarial Transaction
+                    <span>Defense Console</span>
+                </h2>
+
+                <p class="hero-text">
+                    Simulate sophisticated payment attacks and observe how
+                    Sentinel-X detects, scores and responds to them.
+                </p>
+            </div>
+
+            <div class="architecture-mini">
+
+                <div class="arch-node red">
+                    RED TEAM
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="arch-node">
+                    TRANSACTION
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="arch-node blue">
+                    BLUE TEAM
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="arch-node green">
+                    DECISION
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DASHBOARD CARDS ================= -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <span class="stat-label">SYSTEM</span>
+                <strong>ACTIVE</strong>
+                <small>All defense engines operational</small>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">DETECTION ENGINES</span>
+                <strong>4</strong>
+                <small>Fraud • Behavior • Graph • Temporal</small>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">DEFENSE MODE</span>
+                <strong>ADAPTIVE</strong>
+                <small>Multi-signal risk fusion</small>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">DECISIONS</span>
+                <strong>3</strong>
+                <small>Allow • Challenge • Block</small>
+            </div>
+
+        </section>
+
+
+        <!-- ================= SIMULATION PANEL ================= -->
+
+        <section class="workspace">
+
+            <!-- LEFT -->
+
+            <div class="panel simulation-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="eyebrow">RED TEAM</p>
+                        <h3>Attack Simulator</h3>
+                    </div>
+
+                    <span class="live-badge">
+                        LIVE
+                    </span>
+
+                </div>
+
+                <p class="panel-description">
+                    Select an adversarial strategy and generate a transaction
+                    designed to test the Blue Team.
+                </p>
+
+
+                <!-- Attack selection -->
+
+                <label for="attack">Attack Strategy</label>
+
+                <select id="attack">
+
+                    <option value="ATK001">
+                        ATK001 — Account Takeover
+                    </option>
+
+                    <option value="ATK002">
+                        ATK002 — Card Payment Fraud
+                    </option>
+
+                    <option value="ATK003">
+                        ATK003 — Credential Stuffing
+                    </option>
+
+                    <option value="ATK004">
+                        ATK004 — Social Engineering GenAI Scam
+                    </option>
+
+                    <option value="ATK005">
+                        ATK005 — Synthetic Identity Fraud
+                    </option>
+
+                    <option value="ATK006">
+                        ATK006 — Adversarial Evasion
+                    </option>
+
+                </select>
+
+
+                <!-- Customer -->
+
+                <label for="customer">
+                    Customer ID
+                </label>
+
+                <input
+                    id="customer"
+                    type="text"
+                    value="C1001"
+                    placeholder="Example: C1001"
+                >
+
+
+                <!-- Amount -->
+
+                <label for="amount">
+                    Transaction Amount (₹)
+                </label>
+
+                <input
+                    id="amount"
+                    type="number"
+                    value="4500"
+                    min="1"
+                >
+
+
+                <!-- Merchant -->
+
+                <label for="merchant">
+                    Merchant ID
+                </label>
+
+                <input
+                    id="merchant"
+                    type="text"
+                    value="M1001"
+                    placeholder="Example: M1001"
+                >
+
+
+                <!-- Device -->
+
+                <label for="device">
+                    Device ID
+                </label>
+
+                <input
+                    id="device"
+                    type="text"
+                    value="D101"
+                    placeholder="Example: D101"
+                >
+
+
+                <!-- Location -->
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input
+                    id="location"
+                    type="text"
+                    value="Pune"
+                    placeholder="Example: Pune"
+                >
+
+
+                <!-- Beneficiary -->
+
+                <label for="beneficiary">
+                    Beneficiary ID
+                </label>
+
+                <input
+                    id="beneficiary"
+                    type="text"
+                    value="B101"
+                    placeholder="Example: B101"
+                >
+
+
+                <!-- Payment -->
+
+                <label for="payment">
+                    Payment Method
+                </label>
+
+                <select id="payment">
+
+                    <option value="card">Card</option>
+                    <option value="upi">UPI</option>
+                    <option value="netbanking">Net Banking</option>
+                    <option value="wallet">Wallet</option>
+
+                </select>
+
+
+                <button
+                    id="simulateBtn"
+                    class="primary-btn"
+                    onclick="runSimulation()"
+                >
+
+                    <span>⚡</span>
+                    GENERATE & ANALYZE ATTACK
+
+                </button>
+
+
+                <div
+                    id="loading"
+                    class="loading hidden"
+                >
+
+                    <div class="loader"></div>
+
+                    <span>
+                        Running adversarial simulation...
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="panel result-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="eyebrow">BLUE TEAM</p>
+                        <h3>Security Analysis</h3>
+                    </div>
+
+                    <span id="decisionBadge" class="decision-badge neutral">
+                        WAITING
+                    </span>
+
+                </div>
+
+
+                <!-- Risk -->
+
+                <div class="risk-section">
+
+                    <div class="risk-header">
+
+                        <span>OVERALL RISK SCORE</span>
+
+                        <strong id="riskScore">
+                            --
+                        </strong>
+
+                    </div>
+
+                    <div class="risk-bar">
+
+                        <div
+                            id="riskFill"
+                            class="risk-fill"
+                            style="width: 0%"
+                        ></div>
+
+                    </div>
+
+                    <div class="risk-scale">
+
+                        <span>LOW</span>
+                        <span>MEDIUM</span>
+                        <span>HIGH</span>
+                        <span>CRITICAL</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Detection signals -->
+
+                <div class="signals">
+
+                    <h4>Detection Signals</h4>
+
+                    <div class="signal-grid">
+
+                        <div class="signal-card">
+
+                            <span>FRAUD MODEL</span>
+
+                            <strong id="fraudScore">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="signal-card">
+
+                            <span>BEHAVIOR</span>
+
+                            <strong id="behaviorScore">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="signal-card">
+
+                            <span>GRAPH</span>
+
+                            <strong id="graphScore">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="signal-card">
+
+                            <span>TEMPORAL</span>
+
+                            <strong id="temporalScore">
+                                --
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Fraud probability -->
+
+                <div class="probability">
+
+                    <div>
+
+                        <span>Fraud Probability</span>
+
+                        <strong id="fraudProbability">
+                            --
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Attack ID</span>
+
+                        <strong id="attackResult">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Reasons -->
+
+                <div class="reasons">
+
+                    <h4>Why was this decision made?</h4>
+
+                    <ul id="reasonList">
+
+                        <li>
+                            Run a simulation to view security reasoning.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRANSACTION RESULT ================= -->
+
+        <section
+            id="transactionSection"
+            class="panel transaction-panel hidden"
+        >
+
+            <div class="panel-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        TRANSACTION TRACE
+                    </p>
+
+                    <h3>
+                        Generated Adversarial Transaction
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div
+                id="transactionDetails"
+                class="transaction-details"
+            ></div>
+
+        </section>
+
+
+        <!-- ================= ARCHITECTURE ================= -->
+
+        <section class="panel architecture-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        DEFENSE ARCHITECTURE
+                    </p>
+
+                    <h3>
+                        Multi-Layer Security Pipeline
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="pipeline">
+
+                <div class="pipeline-step red-step">
+
+                    <span>01</span>
+
+                    <strong>RED TEAM</strong>
+
+                    <small>
+                        Attack DNA
+                    </small>
+
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-step">
+
+                    <span>02</span>
+
+                    <strong>SIMULATOR</strong>
+
+                    <small>
+                        Synthetic transaction
+                    </small>
+
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-step">
+
+                    <span>03</span>
+
+                    <strong>FRAUD ML</strong>
+
+                    <small>
+                        Fraud probability
+                    </small>
+
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-step">
+
+                    <span>04</span>
+
+                    <strong>BEHAVIOR</strong>
+
+                    <small>
+                        Customer anomaly
+                    </small>
+
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-step">
+
+                    <span>05</span>
+
+                    <strong>GRAPH</strong>
+
+                    <small>
+                        Relationship risk
+                    </small>
+
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-step">
+
+                    <span>06</span>
+
+                    <strong>TEMPORAL</strong>
+
+                    <small>
+                        Velocity risk
+                    </small>
+
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-step green-step">
+
+                    <span>07</span>
+
+                    <strong>DECISION</strong>
+
+                    <small>
+                        Allow / Challenge / Block
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <span>
+            SENTINEL-X
+        </span>
+
+        <span>
+            Adversarial AI Defense Lab • Payment Security Simulation
+        </span>
+
+        <span>
+            v1.0
+        </span>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

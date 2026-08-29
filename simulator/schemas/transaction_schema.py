@@ -54,20 +54,58 @@ class Transaction(BaseModel):
 
 
 class SimulateRequest(BaseModel):
+<<<<<<< HEAD
     """Input to POST /simulate — what Red Team (or you) sends in."""
+=======
+    """Input to POST /simulate."""
+
+    transaction_id: Optional[str] = None
+>>>>>>> origin/feature/integration
+
     customer_id: str
     amount: float = Field(..., gt=0)
     merchant_id: str
     device_id: str
     location: str
     beneficiary_id: Optional[str] = None
-    payment_method: Literal["card", "upi", "netbanking", "wallet"] = "card"
-    attack_id: Optional[str] = None  # set by Red Team if this is an attack
+    payment_method: Literal[
+        "card",
+        "upi",
+        "netbanking",
+        "wallet"
+    ] = "card"
+    attack_id: Optional[str] = None
+    timestamp: Optional[datetime] = None
 
 
 class SimulateResponse(BaseModel):
     """Output of POST /simulate."""
+
     transaction_id: str
     timestamp: datetime
+<<<<<<< HEAD
     simulation_status: Literal["success", "rejected"]
     transaction: Optional[Transaction] = None
+    blue_team_result: Optional[dict] = None
+=======
+
+    # Simulator execution status
+    simulation_status: Literal["success", "rejected", "challenge"]
+
+    # Blue Team security decision
+    security_decision: Literal["ALLOW", "CHALLENGE", "BLOCK"]
+
+    # Overall risk score from Blue Team
+    risk_score: float
+
+    # Individual security signals
+    fraud_probability: float
+    behavior_score: float
+    graph_risk_score: float
+    temporal_risk_score: float
+
+    # Human-readable explanation
+    reasons: list[str] = []
+
+    transaction: Optional[Transaction] = None
+>>>>>>> origin/feature/integration
