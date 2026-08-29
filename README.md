@@ -1,563 +1,1106 @@
-# 🛡️ Mastercard : Adversarial AI Defense Lab
+# 🛡️ Sentinel-X — Adversarial AI Defense Lab
 
-### **Build the Attack. Test the Defense. Learn. Adapt.**
+### Build the Attack. Test the Defense. Learn. Adapt.
 
-> An AI-powered adversarial security laboratory for discovering, simulating,
-> evaluating, and defending against evolving GenAI-powered payment fraud.
-
----
-
-## 🚨 The Problem
-
-Generative AI is changing the fraud landscape.
-
-Fraudsters can now create highly convincing social-engineering attacks,
-impersonation attempts, synthetic identities, and adaptive payment behaviors
-at unprecedented speed.
-
-Traditional fraud detection systems are generally trained on historical
-patterns.
-
-But what happens when the attacker continuously changes the pattern?
-
-### **The attacker evolves. Shouldn't the defense evolve too?**
-
-This project approaches payment security as an **adversarial learning
-problem**.
-
-Instead of waiting for new fraud to appear in the real world, we create a
-controlled synthetic payment ecosystem where an AI-powered **Red Team**
-continuously attempts to bypass an AI-powered **Blue Team**.
+> An AI-powered adversarial security laboratory for simulating evolving
+> payment fraud attacks and testing how effectively a multi-signal defense
+> system can detect, analyze, and respond to them.
 
 ---
 
-# 💡 Our Approach
+## 🚨 Problem Statement
 
-The system creates a continuous adversarial loop:
+Generative AI is changing the payment-fraud landscape.
+
+Attackers can increasingly create convincing social-engineering scams,
+synthetic identities, account takeovers, credential attacks, and
+evasion-oriented transaction patterns.
+
+Traditional fraud detection systems are generally optimized around
+historical fraud patterns.
+
+But an adaptive attacker does not have to repeat the same behavior.
+
+If an attacker changes the device, location, transaction amount,
+beneficiary, or timing of an attack, a defense model may become less
+effective.
+
+### The attacker evolves. Shouldn't the defense evolve too?
+
+**Sentinel-X** approaches payment security as an adversarial learning
+problem.
+
+Instead of waiting for new fraud patterns to appear in production,
+Sentinel-X creates a controlled synthetic payment environment where a
+Red Team continuously generates adversarial transactions and a Blue Team
+analyzes and responds to them.
+
+The result is a closed-loop system:
 
 ```text
-        🧪 SYNTHETIC PAYMENT WORLD
-                    │
-                    ▼
-              🔴 RED TEAM
-           Generate Attack
-                    │
-                    ▼
-            💳 PAYMENT SIMULATION
-                    │
-                    ▼
-              🔵 BLUE TEAM
-             Detect Attack
-                    │
-                    ▼
-             🧠 RISK ENGINE
-                    │
-          ┌─────────┼─────────┐
-          ▼         ▼         ▼
-       ALLOW    CHALLENGE    BLOCK
-                    │
-                    ▼
-          📊 ADVERSARIAL EVALUATION
-                    │
-                    ▼
-              🔄 FEEDBACK LOOP
-                    │
-                    ▼
-           STRONGER NEXT ATTACK
-                    │
-                    └──────────► 🔴
+Generate Attack
+      ↓
+Create Synthetic Transaction
+      ↓
+Blue Team Detection
+      ↓
+Risk Analysis
+      ↓
+Security Decision
+      ↓
+Feedback
+      ↓
+Adapt Attack
+      ↓
+Generate V2 Attack
+      ↓
+Re-analyze
+      ↺
 
-🎯 Objectives
+
+
+💡 What is Sentinel-X?
+
+Sentinel-X is an adversarial payment-security simulation platform
+consisting of two major components:
+
+🔴 Red Team
+
+The Red Team acts as the attacker.
+
+It:
+
+Selects an attack strategy
+Generates adversarial transaction variations
+Modifies transaction characteristics according to Attack DNA
+Sends attacks to the payment simulator
+Receives Blue Team feedback
+Adapts the attack strategy
+Generates an evolved V2 attack
+🔵 Blue Team
+
+The Blue Team acts as the defense.
+
+It:
+
+Analyzes incoming transactions
+Calculates fraud probability
+Performs behavioral analysis
+Performs graph-based risk analysis
+Evaluates temporal signals
+Combines multiple signals
+Produces an overall risk score
+Generates an ALLOW / CHALLENGE / BLOCK decision
+Provides security reasons
+Sends analysis results back to the Red Team
+🎯 Core Objectives
+
+Sentinel-X is designed around six core objectives:
+
 1. Simulate
 
-Create a realistic but completely synthetic payment environment.
+Create a completely synthetic payment environment for controlled
+security experimentation.
 
 2. Attack
 
-Generate diverse and evolving GenAI-powered fraud scenarios through an
-AI-assisted Red Team.
+Generate realistic adversarial payment transactions using multiple
+fraud strategies.
 
 3. Detect
 
-Use machine learning, behavioral analysis, and graph-based signals to
-identify suspicious payment activity.
+Analyze attacks using multiple independent security signals.
 
 4. Decide
 
-Convert multiple risk signals into an explainable risk score and response.
+Convert security signals into a unified risk score and response.
 
 5. Evaluate
 
-Measure whether the defense successfully detected or missed adversarial
-attacks.
+Determine whether the generated attack was successfully detected,
+challenged, or blocked.
 
 6. Adapt
 
-Feed attack outcomes back into the adversarial loop to generate stronger
-future attacks and expose defensive weaknesses.
+Use Blue Team feedback to modify the next attack and create an evolving
+adversarial loop.
 
 🏗️ System Architecture
+                    🛡️ SENTINEL-X
+             ADVERSARIAL PAYMENT LAB
+                         │
+                         ▼
+                🧬 ATTACK KNOWLEDGE
+                       / DNA
+                         │
+                         ▼
+                  🔴 RED TEAM
+                         │
+                 Attack Generator
+                         │
+                         ▼
+             Synthetic Adversarial
+                 Transaction
+                         │
+                         ▼
+              💳 PAYMENT SIMULATOR
+                         │
+                         ▼
+                  🔵 BLUE TEAM
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+      Fraud ML       Behavioral       Graph
+      Analysis       Analysis         Analysis
+          │              │              │
+          └──────────────┼──────────────┘
+                         │
+                         ▼
+                 Temporal Analysis
+                         │
+                         ▼
+                  🧠 RISK FUSION
+                         │
+                         ▼
+                  RISK SCORE 0–100
+                         │
+                         ▼
+               🚦 DECISION ENGINE
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+           ALLOW      CHALLENGE     BLOCK
+                         │
+                         ▼
+                  📊 EXPLANATION
+                         │
+                         ▼
+                 🔄 FEEDBACK
+                         │
+                         ▼
+                FEEDBACK ADAPTER
+                         │
+                         ▼
+                 ADAPTIVE ENGINE
+                         │
+                         ▼
+                  🔴 RED TEAM V2
+                         │
+                         └──────────────►
+🧪 Synthetic Payment Environment
 
-The platform is organized into interconnected adversarial and defensive
-layers.
+Sentinel-X operates using synthetic payment data.
 
-                         🛡️ ADVERSARIAL PAYMENT SECURITY LAB
-                                      │
-                    ┌─────────────────┴─────────────────┐
-                    │                                   │
-                    ▼                                   ▼
-          🌐 THREAT INTELLIGENCE                🧪 SYNTHETIC PAYMENT
-                 LAYER                                WORLD
-                    │                                   │
-                    ▼                                   ▼
-          ATTACK KNOWLEDGE BASE              Customers • Accounts
-                    │                         Cards • Devices
-                    ▼                         Merchants • Beneficiaries
-              🧬 ATTACK DNA                   • Transactions
-                    │                                   │
-                    ▼                                   │
-              🔴 RED AGENT                              │
-                    │                                   │
-                    ▼                                   │
-             ATTACK COMPOSER                            │
-                    │                                   │
-                    ▼                                   │
-          SYNTHETIC ATTACK GENERATOR                    │
-                    │                                   │
-                    └──────────────┬────────────────────┘
-                                   ▼
-                           FIDELITY ENGINE
-                                   │
-                              ┌────┴────┐
-                              ▼         ▼
-                           REJECT    ACCEPT
-                                        │
-                                        ▼
-                            THREAT-TO-PAYMENT GRAPH
-                                        │
-                                        ▼
-                                  🔵 BLUE TEAM
-                                        │
-                         ┌──────────────┼──────────────┐
-                         ▼              ▼              ▼
-                     FRAUD ML      BEHAVIOR      GRAPH RISK
-                         └──────────────┼──────────────┘
-                                        ▼
-                               RISK FUSION ENGINE
-                                        │
-                                        ▼
-                                  RISK SCORE 0–100
-                                        │
-                                        ▼
-                                  EXPLAINABILITY
-                                        │
-                             ┌──────────┼──────────┐
-                             ▼          ▼          ▼
-                          🟢 ALLOW  🟡 CHALLENGE 🔴 BLOCK
-                                        │
-                                        ▼
-                             ADVERSARIAL EVALUATOR
-                                        │
-                         ┌──────────────┼──────────────┐
-                         ▼              ▼              ▼
-                     DETECTED        MISSED      FALSE POSITIVE
-                         └──────────────┼──────────────┘
-                                        ▼
-                                VULNERABILITY MAP
-                                        │
-                                        ▼
-                                  READINESS SCORE
-                                        │
-                         ┌──────────────┴──────────────┐
-                         ▼                             ▼
-                  🔴 RED FEEDBACK                🔵 BLUE FEEDBACK
-                         │                             │
-                         └──────────────┬──────────────┘
-                                        ▼
-                                   🔄 NEXT ROUND
-🧪 Synthetic Payment World
+The simulated environment contains entities such as:
 
-Before attacking a payment system, we need a realistic environment to attack.
-
-Our synthetic world contains interconnected entities:
-
-👤 Customer
+Customer
    │
-   ├── 💰 Account
-   │      └── 💳 Card
+   ├── Account
+   │      └── Card
    │
-   ├── 📱 Device
+   ├── Device
    │
-   └── 🏪 Merchant
+   └── Transactions
+            │
+            ├── Merchant
+            ├── Beneficiary
+            ├── Location
+            ├── Amount
+            ├── Timestamp
+            └── Payment Method
 
-👤 Customer
-   │
-   └── 💸 Transaction
-           ├── Merchant
-           ├── Beneficiary
-           ├── Device
-           ├── Location
-           └── Amount
+A transaction can contain fields such as:
 
-Every customer also has a synthetic behavioral baseline, such as:
-
-Typical transaction amount
-Typical transaction frequency
-Typical location
-Typical devices
-Typical merchants
-Typical transaction hours
-
-This allows the system to compare:
-
-What is normal for the customer?
-
-against:
-
-What is happening now?
-
-🔴 Red Team — Adversarial Intelligence
-
-The Red Team acts as an adaptive attacker inside the synthetic environment.
-
-It does not simply generate random fraudulent transactions.
-
-It uses structured Attack DNA to construct different attack variations.
-
-Example Attack DNA
 {
-  "attack_type": "behavioral_evasion",
-  "target": "high_value_customer",
-  "amount_pattern": "near_normal",
-  "device_pattern": "trusted",
-  "location_pattern": "normal",
-  "velocity": "moderate",
-  "evasion_level": "high"
+  "transaction_id": "TX1001",
+  "customer_id": "C0001",
+  "account_id": "A0001",
+  "card_id": "CARD0001",
+  "device_id": "D00001",
+  "merchant_id": "M0044",
+  "beneficiary_id": "B425",
+  "amount": 550,
+  "currency": "INR",
+  "location": "Mumbai",
+  "timestamp": "2026-08-29T10:30:00",
+  "payment_method": "card",
+  "is_fraud": true,
+  "attack_id": "ATK006"
 }
 
-The Red Agent can modify these characteristics to create new attack
-variations.
+The system uses synthetic transactions so that adversarial experiments can
+be performed without interacting with real financial systems or real
+customer information.
 
-Example
-Attack A
-₹25,000 + New Device + New Location
-             ↓
-         DETECTED
-             ↓
-Attack B
-₹4,500 + Known Device + Normal Location
-             ↓
-          MISSED
-             ↓
-Attack C
-₹4,200 + Known Device + Slight Behavior Change
+🔴 Red Team — Adversarial Attack Generation
 
-This allows us to explore where the defense becomes vulnerable.
+The Red Team is responsible for generating adversarial transactions.
 
-🔵 Blue Team — Adaptive Defense
+It does not simply generate random fraudulent payments.
 
-The Blue Team evaluates every simulated transaction using multiple
-independent signals.
+Instead, it uses structured Attack DNA to describe the characteristics
+of an attack.
 
-Fraud ML
-
-Estimates the probability that a transaction is fraudulent.
-
-Behavioral Analysis
-
-Compares current activity against the customer's historical behavior.
-
-Graph Risk
-
-Analyzes relationships between:
-
-Customers
-   ↓
-Accounts
-   ↓
-Devices
-   ↓
-Merchants
-   ↓
-Beneficiaries
-   ↓
-Transactions
-
-Suspicious relationships can increase the overall risk.
-
-🧠 Risk Fusion
-
-Instead of trusting one model, the system combines multiple signals.
-
-Fraud ML Score
-      +
-Behavior Score
-      +
-Graph Risk
-      +
-Contextual Signals
-      ↓
-🧠 RISK FUSION
-      ↓
-RISK SCORE: 0–100
-
-Example:
-
-Fraud ML       → 82
-Behavior       → 74
-Graph Risk     → 91
-Context        → 80
-
-Final Risk     → 84
-🚦 Decision Engine
-
-The final risk score determines the response.
-
-Risk	Response
-🟢 0–30	ALLOW
-🟡 31–70	CHALLENGE
-🔴 71–100	BLOCK
-
-The system also provides an explanation for the decision.
-
-Example:
-
-Risk Score: 87
-
-Decision: BLOCK
-
-Reasons:
-• Unusual transaction velocity
-• Suspicious beneficiary relationship
-• Significant behavioral deviation
-🧬 Attack DNA
-
-Attack DNA is a structured representation of an attack's
-characteristics.
-
-It describes:
+Attack DNA can define parameters such as:
 
 Attack type
 Target
-Payment behavior
-Device behavior
-Location behavior
+Amount pattern
+Device pattern
+Location pattern
 Transaction velocity
-Evasion strategy
-Difficulty
+Evasion level
+Attack description
 
-This allows the Red Team to generate variations, rather than relying
-on a fixed set of fraud examples.
+The Attack Generator uses these parameters to modify a legitimate
+transaction and create a synthetic adversarial transaction.
 
-🕸️ Threat-to-Payment Graph
+🧬 Attack DNA
 
-Payment fraud rarely exists as an isolated transaction.
-
-The system therefore models payment relationships as a graph.
-
-              Customer A
-              /        \
-          Device X    Account A
-              │           │
-              │       Transaction
-              │           │
-          Customer B   Beneficiary Z
-              │
-          Device X
-
-Shared devices, repeated beneficiaries, unusual transaction relationships,
-and connected entities can become important risk signals.
-
-🔬 Adversarial Evaluation
-
-After every Red-vs-Blue interaction, the system evaluates the outcome.
-
-              ATTACK
-                │
-                ▼
-          BLUE RESPONSE
-                │
-                ▼
-       ┌────────┼────────┐
-       ▼        ▼        ▼
-   DETECTED   MISSED   FALSE POSITIVE
-Key Metrics
-
-Defense
-
-Precision
-Recall
-F1 Score
-False Positive Rate
-False Negative Rate
-Detection Rate
-
-Adversarial
-
-Attack Success Rate
-Evasion Rate
-Attack Detection Rate
-Average Attack Difficulty
-Defense Readiness Score
-🗺️ Vulnerability Map
-
-Instead of only reporting:
-
-"Fraud detection = 87%"
-
-the system identifies where the defense is weak.
+Attack DNA acts as the structured representation of an attack strategy.
 
 Example:
 
-VULNERABILITY MAP
+{
+  "attack_type": "Adversarial Evasion",
+  "amount_pattern": "near_normal",
+  "device_pattern": "known",
+  "location_pattern": "normal",
+  "velocity": "normal",
+  "evasion_level": 4
+}
 
-Behavioral Evasion       █████████░  High
-New Device Attacks       ███████░░░  Medium
-Beneficiary Attacks      █████░░░░░  Low
-High-Value Transactions  ███░░░░░░░  Low
+The Red Team can therefore create multiple variations of the same attack
+family instead of relying on one fixed fraud example.
 
-This converts model performance into actionable security intelligence.
+⚔️ Implemented Attack Types
 
-🔄 Continuous Adversarial Feedback
+Sentinel-X currently implements six adversarial attack strategies.
 
-The most important part of the system is the feedback loop.
+ID	Attack Type	Description
+ATK001	Account Takeover	Uses a new device/location with a believable transaction amount
+ATK002	Card Payment Fraud	Creates a higher-value transaction with device/location changes
+ATK003	Credential Stuffing	Simulates suspicious access characteristics using device, location and timing changes
+ATK004	Social Engineering / GenAI Scam	Uses the legitimate device/location but introduces a new beneficiary and meaningful amount deviation
+ATK005	Synthetic Identity Fraud	Uses synthetic device and beneficiary relationships with altered transaction behavior
+ATK006	Adversarial Evasion	Keeps several transaction characteristics close to normal while introducing subtle anomalies
 
-When Red Team succeeds:
-Attack
+All six attack types have been manually tested through the system.
+
+🔴 Attack Generation Process
+
+The Red Team follows this process:
+
+Select Attack DNA
+       ↓
+Load Legitimate Transaction
+       ↓
+Modify Transaction Features
+       ↓
+Mark Transaction as Fraud
+       ↓
+Attach Attack ID
+       ↓
+Generate Adversarial Transaction
+       ↓
+Send to Simulator
+
+For example:
+
+Legitimate Transaction
+₹550
+Mumbai
+Known Device
+Known Customer
+      ↓
+      ↓ Attack Generation
+      ↓
+Adversarial Transaction
+₹556.39
+Mumbai
+Known Device
+New Beneficiary
+Short Time Interval
+      ↓
+Blue Team
+🔵 Blue Team — Detection & Defense
+
+The Blue Team evaluates every generated transaction using multiple
+security signals.
+
+The objective is not to rely on a single fraud model.
+
+Instead, Sentinel-X combines multiple detection surfaces.
+
+🤖 Fraud ML Detection
+
+The fraud detection component estimates the probability that a transaction
+is fraudulent.
+
+Example:
+
+Fraud Probability
+       ↓
+     0.325
+
+This signal contributes to the overall security analysis.
+
+🧠 Behavioral Detection
+
+Behavioral analysis evaluates whether the transaction differs from
+expected customer behavior.
+
+Examples of behavioral characteristics include:
+
+Transaction amount
+Transaction frequency
+Typical activity
+Device behavior
+Transaction patterns
+
+A deviation from normal behavior can increase the risk associated with
+the transaction.
+
+🕸️ Graph-Based Risk Detection
+
+Payment relationships are modeled as connected entities.
+
+Customer
+   │
+   ├── Account
+   │
+   ├── Device
+   │
+   ├── Merchant
+   │
+   └── Transaction
+           │
+           └── Beneficiary
+
+Graph analysis can identify suspicious relationships such as:
+
+New beneficiary relationships
+Suspicious transaction connections
+Highly connected merchants
+Device relationships
+Unusual entity connections
+
+Example:
+
+Graph Risk Score → 40
+⏱️ Temporal Risk Detection
+
+The system also evaluates transaction timing.
+
+Very short intervals between related transactions can become a temporal
+risk signal.
+
+Example:
+
+Previous Transaction
+        ↓
+   10–45 seconds
+        ↓
+New Transaction
+        ↓
+Temporal Risk
+
+Example:
+
+Temporal Risk Score → 25
+🧠 Multi-Signal Risk Fusion
+
+Sentinel-X combines multiple signals instead of depending on one detector.
+
+Fraud ML
+   +
+Behavior
+   +
+Graph Risk
+   +
+Temporal Risk
+   ↓
+🧠 Risk Fusion
+   ↓
+Final Risk Score
+
+The resulting score is normalized to a:
+
+0 – 100
+
+Example:
+
+Fraud Probability → 0.325
+Behavior Score    → 0.0
+Graph Risk        → 40.0
+Temporal Risk     → 25.0
+
+Final Risk Score  → 56.38
+🚦 Decision Engine
+
+The final risk score is converted into a security decision.
+
+Risk Score
+    │
+    ├── Low Risk
+    │      ↓
+    │    ALLOW
+    │
+    ├── Medium Risk
+    │      ↓
+    │  CHALLENGE
+    │
+    └── High Risk
+           ↓
+         BLOCK
+
+The system supports:
+
+🟢 ALLOW
+🟡 CHALLENGE
+🔴 BLOCK
+
+The decision is accompanied by security reasons explaining why the
+transaction received its risk classification.
+
+Example:
+
+Risk Score: 56.38
+
+Decision: CHALLENGE
+
+Reasons:
+• Suspicious transaction relationships
+• New beneficiary relationship
+• Merchant has high customer connectivity
+📊 Transaction Trace
+
+Every generated transaction maintains its attack identity.
+
+Example:
+
+Transaction ID:
+TX_TEST_ATK006_ATK006-V2_51b6c8
+
+Attack ID:
+ATK006-V2
+
+Amount:
+₹569.33
+
+Location:
+Mumbai
+
+Device:
+D00001
+
+Beneficiary:
+B425
+
+Fraud:
+True
+
+This allows the complete lifecycle of an attack to be traced.
+
+🔄 Adaptive Adversarial Feedback Loop
+
+The key feature of Sentinel-X is its adaptive Red Team.
+
+The system does not stop after detecting an attack.
+
+The Blue Team's analysis is converted into structured feedback and passed
+back to the Red Team.
+
+              V1 ATTACK
+                  │
+                  ▼
+             BLUE TEAM
+                  │
+                  ▼
+             ANALYSIS
+                  │
+                  ▼
+         FEEDBACK ADAPTER
+                  │
+                  ▼
+          ADAPTIVE ENGINE
+                  │
+                  ▼
+              V2 ATTACK
+                  │
+                  ▼
+             BLUE TEAM
+                  │
+                  ▼
+             RE-ANALYSIS
+                  │
+                  └──────────────►
+🔁 V1 → V2 Attack Evolution
+
+Suppose the Red Team generates:
+
+ATK006
+
+The Blue Team detects signals such as:
+
+Graph
+Temporal
+
+The Feedback Adapter converts the Blue Team result into normalized
+feedback.
+
+The Adaptive Engine then modifies the Attack DNA.
+
+For example:
+
+ATK006
+   ↓
+Detected:
+Graph + Temporal
+   ↓
+Adaptation
+   ↓
+Known Device
+Normal Location
+Normal Velocity
+Near-Normal Amount
+   ↓
+ATK006-V2
+
+The evolved transaction is then sent back to the Blue Team.
+
+This creates a real adversarial feedback cycle rather than a one-time
+fraud detection process.
+
+🧩 Feedback Adapter
+
+The BlueTeamFeedbackAdapter converts Blue Team analysis into a
+normalized structure that the Adaptive Engine can understand.
+
+It extracts:
+
+Risk score
+Security decision
+Detected signals
+
+Example:
+
+{
+  "risk_score": 56.38,
+  "decision": "CHALLENGE",
+  "detected_signals": [
+    "graph",
+    "temporal"
+  ]
+}
+
+This provides a clean interface between the defensive system and the
+adaptive Red Team.
+
+🧬 Adaptive Engine
+
+The Adaptive Engine modifies an existing Attack DNA based on Blue Team
+feedback.
+
+For example:
+
+If behavior is detected
+        ↓
+Reduce amount anomaly
+
+If graph is detected
+        ↓
+Move toward known device/location
+
+If temporal anomaly is detected
+        ↓
+Reduce transaction velocity
+
+If fraud signal is detected
+        ↓
+Reduce obvious transaction characteristics
+
+The evolved attack receives a versioned identifier:
+
+ATK006
   ↓
-Blue misses
-  ↓
-Weakness identified
-  ↓
-Red learns successful characteristics
-  ↓
-Generate stronger variation
-When Blue Team succeeds:
-Attack
-  ↓
-Blue detects
-  ↓
-Attack becomes less effective
-  ↓
-Red changes strategy
+ATK006-V2
 
-The result is a continuous:
+The system therefore preserves the original attack identity while
+documenting how the attack evolved.
 
-Attack → Defense → Evaluation → Adaptation cycle
+🔬 Example End-to-End Run
 
-🌟 What Makes the System Different?
+A tested ATK006 example produced:
 
-The system is designed around proactive adversarial resilience rather
-than only reactive fraud detection.
+Attack:
+ATK006 — Adversarial Evasion
 
-Traditional Fraud Detection
-Historical Data
-      ↓
-Train Model
-      ↓
-Detect Known Patterns
-Adversarial Defense Lab
-Synthetic World
-      ↓
-AI Red Team
-      ↓
-Generate Novel Attack
-      ↓
-Simulate
-      ↓
-AI Blue Team
-      ↓
-Detect + Explain + Respond
-      ↓
-Evaluate
-      ↓
-Find Vulnerability
-      ↓
-Adapt
-      ↓
-Generate Next Attack
+V1 Transaction:
+Amount → ₹556.39
+Device → D00001
+Location → Mumbai
+Beneficiary → B425
 
-The system therefore treats the attacker itself as a testing mechanism
-for improving payment security.
+Blue Team:
+Fraud Probability → 0.325
+Behavior Score    → 0.0
+Graph Risk        → 40.0
+Temporal Risk     → 25.0
+Final Risk        → 56.38
 
+Decision:
+CHALLENGE
+
+Detected Signals:
+Graph
+Temporal
+
+The feedback was then used to evolve the attack:
+
+ATK006
+   ↓
+Blue Team Feedback
+   ↓
+Adaptive Engine
+   ↓
+ATK006-V2
+
+The evolved attack was generated with adapted parameters such as:
+
+Amount Pattern → near_normal
+Device Pattern → known
+Location       → normal
+Velocity       → normal
+Evasion Level  → 5
+
+The V2 transaction was then re-analyzed by the Blue Team.
+
+Example result:
+
+Risk Score → 56.55
+Decision   → CHALLENGE
+
+This demonstrates the complete:
+
+Attack → Detect → Feedback → Adapt → Re-attack
+
+cycle.
+
+🌐 API Architecture
+
+Sentinel-X exposes its functionality through FastAPI endpoints.
+
+Current major endpoints include:
+
+GET /
+GET /health
+
+POST /red-team/generate
+
+POST /red-team/adapt
+
+POST /red-team/adapt-from-analysis
+
+POST /simulate
+
+POST /simulate/adversarial
+Red Team
+/red-team/generate
+
+Generates an adversarial transaction from an attack strategy.
+
+/red-team/adapt
+
+Adapts an attack using structured feedback.
+
+/red-team/adapt-from-analysis
+
+Directly converts Blue Team analysis into feedback and generates an
+evolved attack.
+
+Simulator
+/simulate
+
+Runs a transaction through the simulation and security pipeline.
+
+/simulate/adversarial
+
+Analyzes an adversarial transaction through the Blue Team pipeline.
+
+🖥️ Frontend Dashboard
+
+Sentinel-X includes a web-based dashboard for demonstrating the
+adversarial pipeline.
+
+The dashboard displays information such as:
+
+Selected attack
+Generated transaction
+Attack version
+Fraud probability
+Behavioral risk
+Graph risk
+Temporal risk
+Overall risk score
+Security decision
+Security reasons
+Adaptive attack results
+V1 → V2 evolution
+
+The frontend provides a visual interface over the underlying FastAPI
+services.
+
+🧪 Testing
+
+The system has been manually tested across all six attack types:
+
+ATK001 → Account Takeover              ✅
+ATK002 → Card Payment Fraud            ✅
+ATK003 → Credential Stuffing           ✅
+ATK004 → Social Engineering / GenAI    ✅
+ATK005 → Synthetic Identity Fraud      ✅
+ATK006 → Adversarial Evasion           ✅
+
+The adaptive loop has also been tested:
+
+V1 Attack
+   ↓
+Blue Team Analysis
+   ↓
+Feedback Extraction
+   ↓
+Attack Adaptation
+   ↓
+V2 Attack
+   ↓
+Blue Team Re-analysis
 🛠️ Technology Stack
-Frontend
-Next.js
-TypeScript
-Tailwind CSS
-Recharts
 Backend
 Python
 FastAPI
-AI / Machine Learning
+Uvicorn
+Pydantic
+Machine Learning / Detection
 Scikit-learn
-XGBoost
-Generative AI / LLM
-Data
-Pandas
-NumPy
-PostgreSQL / Supabase
+Fraud detection models
+Behavioral anomaly analysis
+Graph-based risk analysis
+Temporal analysis
 Graph Intelligence
 NetworkX
-Development
+Data Processing
+Python data-processing utilities
+JSON-based synthetic datasets
+Frontend
+HTML
+CSS
+JavaScript
+API Communication
+REST APIs
+JSON
+Development & Version Control
 Git
 GitHub
+PowerShell
+VS Code
 📁 Project Structure
 Mastercard-Adversarial-AI-Defense-Lab/
 │
-├── backend/             # API and backend services
+├── red_team/
+│   │
+│   ├── agent/
+│   │   ├── adaptive_attack.py
+│   │   └── feedback_adapter.py
+│   │
+│   ├── adaptive/
+│   │   ├── adaptive_engine.py
+│   │   └── __init__.py
+│   │
+│   ├── api/
+│   │   └── red_team_api.py
+│   │
+│   ├── feedback/
+│   │   └── feedback_builder.py
+│   │
+│   ├── generator/
+│   │   └── attack_generator.py
+│   │
+│   └── schemas/
+│       ├── attack_dna.py
+│       ├── feedback.py
+│       └── transaction.py
 │
-├── frontend/            # Web dashboard
+├── simulator/
+│   │
+│   ├── api/
+│   │   └── main.py
+│   │
+│   └── schemas/
+│       └── transaction_schema.py
 │
-├── data/                # Synthetic payment data
+├── frontend/
+│   ├── index.html
+│   ├── app.js
+│   └── style.css
 │
-├── red_team/            # Attack generation and adversarial logic
+├── docs/
+│   └── SENTINEL_X_INTEGRATION.md
 │
-├── blue_team/           # Detection and defense models
-│
-├── simulator/           # Payment simulation engine
-│
-├── evaluation/          # Metrics and adversarial evaluation
-│
-├── docs/                # Architecture and documentation
-│
+├── .gitignore
 ├── README.md
-├── requirements.txt
-└── .gitignore
-🗺️ Development Roadmap
-Phase 1
-🧪 Synthetic Payment World
+└── requirements.txt
+🚀 How to Run
+1. Clone the repository
+git clone https://github.com/Vaibhavi-14shetty/Mastercard-Adversarial-AI-Defense-Lab.git
+cd Mastercard-Adversarial-AI-Defense-Lab
+2. Create a virtual environment
+Windows
+python -m venv venv
+
+Activate it:
+
+venv\Scripts\activate
+3. Install dependencies
+pip install -r requirements.txt
+4. Start the FastAPI backend
+python -m uvicorn simulator.api.main:app --reload
+
+The API will be available at:
+
+http://127.0.0.1:8000
+
+FastAPI documentation:
+
+http://127.0.0.1:8000/docs
+
+OpenAPI specification:
+
+http://127.0.0.1:8000/openapi.json
+5. Run the frontend
+
+Open:
+
+frontend/index.html
+
+in a browser and ensure the FastAPI backend is running.
+
+🔗 End-to-End Workflow
+
+The complete Sentinel-X workflow is:
+
+                     START
+                       │
+                       ▼
+              Select Attack Type
+                       │
+                       ▼
+                 Attack DNA
+                       │
+                       ▼
+              🔴 RED TEAM V1
+                       │
+                       ▼
+          Generate Synthetic Transaction
+                       │
+                       ▼
+              💳 PAYMENT SIMULATOR
+                       │
+                       ▼
+                🔵 BLUE TEAM
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+      Fraud        Behavior         Graph
+        │              │              │
+        └──────────────┼──────────────┘
+                       ▼
+                   Temporal
+                       │
+                       ▼
+                 Risk Fusion
+                       │
+                       ▼
+                Risk Score 0–100
+                       │
+                       ▼
+              ALLOW / CHALLENGE / BLOCK
+                       │
+                       ▼
+                  Explanation
+                       │
+                       ▼
+              Blue Team Feedback
+                       │
+                       ▼
+              Feedback Adapter
+                       │
+                       ▼
+               Adaptive Engine
+                       │
+                       ▼
+                🔴 RED TEAM V2
+                       │
+                       ▼
+              Re-generate Attack
+                       │
+                       ▼
+                🔵 BLUE TEAM
+                       │
+                       ▼
+                  Re-analysis
+                       │
+                       └──────────────►
+📌 Key Features
+🔴 Adversarial Red Team
+Structured Attack DNA
+Six attack families
+Synthetic fraud generation
+Attack-specific transaction manipulation
+Versioned attack evolution
+Adaptive attack generation
+🔵 Blue Team Defense
+Fraud probability
+Behavioral risk
+Graph risk
+Temporal risk
+Multi-signal risk fusion
+Risk score from 0–100
+ALLOW / CHALLENGE / BLOCK
+Explainable security reasons
+🔄 Adaptive Intelligence
+Blue Team feedback extraction
+Feedback normalization
+Attack adaptation
+V1 → V2 evolution
+Re-analysis of evolved attacks
+Closed-loop adversarial testing
+🌐 Demonstration
+FastAPI backend
+REST API endpoints
+Interactive API documentation
+Web-based Sentinel-X dashboard
+End-to-end transaction tracing
+🌟 What Makes Sentinel-X Different?
+
+Traditional fraud detection generally follows:
+
+Historical Fraud Data
         ↓
-Phase 2
-💳 Payment Simulator
+Train Detection Model
         ↓
-Phase 3
+Detect Fraud
+        ↓
+Respond
+
+Sentinel-X introduces an adversarial security layer:
+
+Synthetic Payment Environment
+        ↓
 🔴 Red Team
         ↓
-Phase 4
+Generate Attack
+        ↓
+Payment Simulation
+        ↓
 🔵 Blue Team
         ↓
-Phase 5
-🧠 Risk + Decision Engine
+Detect + Analyze + Decide
         ↓
-Phase 6
-📊 Adversarial Evaluation
+Feedback
         ↓
-Phase 7
-🔄 Feedback Loop
+Adaptive Red Team
         ↓
-Phase 8
-🖥️ Frontend Integration
+Generate Stronger / Different Attack
         ↓
-Phase 9
-🚀 End-to-End Demonstration
+Re-test Defense
+
+The attacker itself becomes a mechanism for testing the defense.
+
+Instead of only asking:
+
+"Can our system detect this fraud?"
+
+Sentinel-X asks:
+
+"What happens when the attacker learns from our detection behavior
+and changes the attack?"
+
+This makes the platform suitable for exploring adversarial resilience,
+evasion behavior, and defensive weaknesses in controlled payment-security
+simulations.
+
+🏆 Project Outcome
+
+Sentinel-X successfully demonstrates a complete adversarial payment
+security pipeline:
+
+                🔴 RED TEAM
+                     │
+                     ▼
+             ATTACK GENERATION
+                     │
+                     ▼
+          SYNTHETIC TRANSACTION
+                     │
+                     ▼
+                🔵 BLUE TEAM
+                     │
+                     ▼
+          MULTI-SIGNAL DETECTION
+                     │
+                     ▼
+             RISK + DECISION
+                     │
+                     ▼
+               FEEDBACK
+                     │
+                     ▼
+             ADAPTIVE ENGINE
+                     │
+                     ▼
+              🔴 V2 ATTACK
+                     │
+                     ▼
+              RE-ANALYSIS
+
+The implemented system demonstrates that payment-security testing can be
+treated as a continuous adversarial process rather than a one-time fraud
+detection task.
+
 🔐 Safety & Responsible Use
 
-This project operates entirely inside a controlled synthetic environment.
+Sentinel-X is designed strictly for defensive security research and
+controlled simulation.
 
 No real payment credentials are used.
 No real financial transactions are executed.
-No real customer data is processed.
-Attack generation is restricted to the simulated environment.
-The system is designed for defensive security research and adversarial
-testing.
+No real customer financial data is processed.
+Transactions are synthetic.
+Attack generation operates within the simulated environment.
+The system is intended for security testing, research, demonstration,
+and defensive analysis.
+
+The project does not interact with real payment networks.
+
+📚 Documentation
+
+Additional integration documentation is available in:
+
+docs/SENTINEL_X_INTEGRATION.md
+👥 Project
+
+Sentinel-X — Adversarial AI Defense Lab
+
+Built as an adversarial payment-security system combining:
+
+🔴 Red Team
++
+💳 Payment Simulation
++
+🔵 Blue Team
++
+🧠 Multi-Signal Detection
++
+🔄 Adaptive Feedback
+Build the Attack. Test the Defense. Learn. Adapt.
