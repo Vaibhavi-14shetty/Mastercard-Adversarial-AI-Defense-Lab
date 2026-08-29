@@ -131,7 +131,7 @@ class AttackGenerator:
         # ATK001 — Account Takeover
         # --------------------------------------------------
 
-        if attack.attack_id == "ATK001":
+        if attack.attack_id == "ATK001" and "-V" not in attack.attack_id:
 
             modified.device_id = f"D{random.randint(100, 999)}"
 
@@ -153,7 +153,7 @@ class AttackGenerator:
         # ATK002 — Card Payment Fraud
         # --------------------------------------------------
 
-        elif attack.attack_id == "ATK002":
+        elif attack.attack_id == "ATK002" and "-V" not in attack.attack_id:
 
             modified.device_id = f"D{random.randint(100, 999)}"
 
@@ -174,7 +174,7 @@ class AttackGenerator:
         # ATK003 — Credential Stuffing
         # --------------------------------------------------
 
-        elif attack.attack_id == "ATK003":
+        elif attack.attack_id == "ATK003" and "-V" not in attack.attack_id:
 
             modified.device_id = f"D{random.randint(100, 999)}"
 
@@ -195,7 +195,7 @@ class AttackGenerator:
         # ATK004 — Social Engineering / GenAI Scam
         # --------------------------------------------------
 
-        elif attack.attack_id == "ATK004":
+        elif attack.attack_id == "ATK004" and "-V" not in attack.attack_id:
 
             # Social-engineering attacks are performed from the
             # legitimate customer's device and location.
@@ -227,7 +227,7 @@ class AttackGenerator:
         # ATK005 — Synthetic Identity Fraud
         # --------------------------------------------------
 
-        elif attack.attack_id == "ATK005":
+        elif attack.attack_id == "ATK005" and "-V" not in attack.attack_id:
 
             # Synthetic identity uses a previously unseen but
             # structurally valid device ID.
@@ -248,7 +248,7 @@ class AttackGenerator:
         # ATK006 — Adversarial Evasion
         # --------------------------------------------------
 
-        elif attack.attack_id == "ATK006":
+        elif attack.attack_id == "ATK006" and "-V" not in attack.attack_id:
 
             # Keep individual features close to normal,
             # but introduce subtle inconsistencies.
