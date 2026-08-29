@@ -42,7 +42,7 @@ from red_team.api.red_team_api import router as red_team_router
 from red_team.schemas.transaction import Transaction as RedTeamTransaction
 from red_team.composer.attack_composer import AttackComposer
 from red_team.generator.attack_generator import AttackGenerator
-
+from red_team.feedback.feedback_builder import FeedbackBuilder
 
 # ============================================================
 # APP
@@ -146,7 +146,7 @@ evaluator = Evaluator()
 
 attack_composer = AttackComposer()
 attack_generator = AttackGenerator()
-
+feedback_builder = FeedbackBuilder()
 
 # ============================================================
 # HELPERS
@@ -388,6 +388,26 @@ def simulate_transaction(request: SimulateRequest):
     else:
         simulation_status = "success"
 
+        # --------------------------------------------------------
+    # BUILD RED TEAM FEEDBACK
+    # --------------------------------------------------------
+
+    feedback = None
+
+    if request.attack_id:
+        try:
+            attack = attack_composer.get_attack(request.attack_id)
+
+            feedback = feedback_builder.build(
+                attack_id=attack.attack_id,
+                attack_type=attack.attack_type,
+                transaction_id=transaction.transaction_id,
+                analysis=analysis,
+            )
+
+        except ValueError:
+            feedback = None
+
     # --------------------------------------------------------
     # 9. Return transaction + Blue Team analysis
     # --------------------------------------------------------
@@ -404,6 +424,7 @@ def simulate_transaction(request: SimulateRequest):
         temporal_risk_score=analysis["risk"]["temporal_risk_score"],
         reasons=analysis["explanation"]["reasons"],
         transaction=transaction,
+        blue_team_result=(feedback.model_dump() if feedback else None),
     )
 
 
